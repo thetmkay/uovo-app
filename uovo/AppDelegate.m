@@ -19,9 +19,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    EventsTableViewController * rootController = [[EventsTableViewController alloc] init];
     
-    self.window.rootViewController = rootController;
+    EventsTableViewController * rootController = [[EventsTableViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:rootController];
+    self.window.rootViewController = navController;
     
     return YES;
 }

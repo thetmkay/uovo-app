@@ -28,6 +28,7 @@ static NSString *const kClientSecret = @"8jWuUBjxczqKE2EzFG6vEl8a";
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    [self.navigationItem setTitle:@"Today"];
     
     self.events = [NSArray array];
     [self.tableView registerClass:[EventCell class] forCellReuseIdentifier:@"EventCell"];
@@ -113,7 +114,13 @@ static NSString *const kClientSecret = @"8jWuUBjxczqKE2EzFG6vEl8a";
 }
 
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    Event * event = [self.events objectAtIndex:indexPath.row];
+    
+    EventViewController * viewController = [[EventViewController alloc] initWithEvent:event];
+    [self.navigationController pushViewController:viewController animated:YES];
+}
 
 /*
 // Override to support editing the table view.
