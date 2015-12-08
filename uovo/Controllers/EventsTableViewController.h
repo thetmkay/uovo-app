@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GTMOAuth2ViewControllerTouch.h"
-#import "GTLCalendar.h"
+#import "AFNetworking.h"
 #import "Event.h"
+#import "EventCell.h"
+#import "ISO8601DateFormatter.h"
 
 @interface EventsTableViewController : UITableViewController
 
 @property NSArray * events;
 
-@property (nonatomic, strong) GTLServiceCalendar *service;
 
 @end

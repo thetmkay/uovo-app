@@ -17,8 +17,7 @@
 		5EFFF3341C163312007B322B /* uovoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3331C163312007B322B /* uovoUITests.m */; };
 		5EFFF3441C16D5DD007B322B /* EventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3431C16D5DD007B322B /* EventsTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5EFFF3471C16DD5E007B322B /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3461C16DD5E007B322B /* Event.m */; settings = {ASSET_TAGS = (); }; };
-		5EFFF34B1C16E389007B322B /* GoogleCalendarService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF34A1C16E389007B322B /* GoogleCalendarService.m */; settings = {ASSET_TAGS = (); }; };
-		5EFFF34E1C16E3D2007B322B /* GoogleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF34D1C16E3D2007B322B /* GoogleViewController.m */; settings = {ASSET_TAGS = (); }; };
+		5EFFF3511C1744EA007B322B /* EventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3501C1744EA007B322B /* EventCell.m */; settings = {ASSET_TAGS = (); }; };
 		A840ECC9DCE4BC9DA417FC25 /* libPods-uovo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A066DFEBD95106A764594F75 /* libPods-uovo.a */; };
 /* End PBXBuildFile section */
 
@@ -59,10 +58,8 @@
 		5EFFF3431C16D5DD007B322B /* EventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventsTableViewController.m; path = Controllers/EventsTableViewController.m; sourceTree = "<group>"; };
 		5EFFF3451C16DD5E007B322B /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Event.h; path = Models/Event.h; sourceTree = "<group>"; };
 		5EFFF3461C16DD5E007B322B /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Event.m; path = Models/Event.m; sourceTree = "<group>"; };
-		5EFFF3491C16E389007B322B /* GoogleCalendarService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoogleCalendarService.h; path = Services/GoogleCalendarService.h; sourceTree = "<group>"; };
-		5EFFF34A1C16E389007B322B /* GoogleCalendarService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoogleCalendarService.m; path = Services/GoogleCalendarService.m; sourceTree = "<group>"; };
-		5EFFF34C1C16E3D2007B322B /* GoogleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoogleViewController.h; path = Controllers/GoogleViewController.h; sourceTree = "<group>"; };
-		5EFFF34D1C16E3D2007B322B /* GoogleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoogleViewController.m; path = Controllers/GoogleViewController.m; sourceTree = "<group>"; };
+		5EFFF34F1C1744EA007B322B /* EventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventCell.h; path = Views/EventCell.h; sourceTree = "<group>"; };
+		5EFFF3501C1744EA007B322B /* EventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventCell.m; path = Views/EventCell.m; sourceTree = "<group>"; };
 		913DF129039F67FA5AA24910 /* Pods-uovo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uovo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uovo/Pods-uovo.debug.xcconfig"; sourceTree = "<group>"; };
 		A066DFEBD95106A764594F75 /* libPods-uovo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-uovo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C08ED23236C9DBD3BB242766 /* Pods-uovo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uovo.release.xcconfig"; path = "Pods/Target Support Files/Pods-uovo/Pods-uovo.release.xcconfig"; sourceTree = "<group>"; };
@@ -119,7 +116,6 @@
 		5EFFF30A1C163311007B322B /* uovo */ = {
 			isa = PBXGroup;
 			children = (
-				5EFFF3481C16E34F007B322B /* Google */,
 				5EFFF3411C16D5AF007B322B /* Events */,
 				5EFFF30E1C163311007B322B /* AppDelegate.h */,
 				5EFFF30F1C163311007B322B /* AppDelegate.m */,
@@ -166,19 +162,10 @@
 				5EFFF3431C16D5DD007B322B /* EventsTableViewController.m */,
 				5EFFF3451C16DD5E007B322B /* Event.h */,
 				5EFFF3461C16DD5E007B322B /* Event.m */,
+				5EFFF34F1C1744EA007B322B /* EventCell.h */,
+				5EFFF3501C1744EA007B322B /* EventCell.m */,
 			);
 			name = Events;
-			sourceTree = "<group>";
-		};
-		5EFFF3481C16E34F007B322B /* Google */ = {
-			isa = PBXGroup;
-			children = (
-				5EFFF3491C16E389007B322B /* GoogleCalendarService.h */,
-				5EFFF34A1C16E389007B322B /* GoogleCalendarService.m */,
-				5EFFF34C1C16E3D2007B322B /* GoogleViewController.h */,
-				5EFFF34D1C16E3D2007B322B /* GoogleViewController.m */,
-			);
-			name = Google;
 			sourceTree = "<group>";
 		};
 		966C0832224A80C71337976C /* Pods */ = {
@@ -363,12 +350,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EFFF34B1C16E389007B322B /* GoogleCalendarService.m in Sources */,
 				5EFFF3101C163311007B322B /* AppDelegate.m in Sources */,
 				5EFFF3191C163311007B322B /* uovo.xcdatamodeld in Sources */,
 				5EFFF3471C16DD5E007B322B /* Event.m in Sources */,
 				5EFFF3441C16D5DD007B322B /* EventsTableViewController.m in Sources */,
-				5EFFF34E1C16E3D2007B322B /* GoogleViewController.m in Sources */,
+				5EFFF3511C1744EA007B322B /* EventCell.m in Sources */,
 				5EFFF30D1C163311007B322B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
