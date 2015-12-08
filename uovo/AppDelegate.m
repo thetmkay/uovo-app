@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "EventsTableViewController.h"
+#import "GoogleViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,7 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    EventsTableViewController * rootController = [[EventsTableViewController alloc] init];
+    GoogleViewController * rootController = [[GoogleViewController alloc] init];
     
     self.window.rootViewController = rootController;
     

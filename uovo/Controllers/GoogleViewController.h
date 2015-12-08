@@ -1,5 +1,5 @@
 //
-//  EventsTableViewController.h
+//  GoogleViewController.h
 //  uovo
 //
 //  Created by George Nishimura on 08/12/2015.
@@ -7,14 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "GTMOAuth2ViewControllerTouch.h"
 #import "GTLCalendar.h"
-#import "Event.h"
 
-@interface EventsTableViewController : UITableViewController
-
-@property NSArray * events;
+@interface GoogleViewController : UIViewController
 
 @property (nonatomic, strong) GTLServiceCalendar *service;
+@property (nonatomic, strong) UITextView *output;
 
 @end

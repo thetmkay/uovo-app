@@ -8,11 +8,17 @@
 
 #import "EventsTableViewController.h"
 
+static NSString *const kKeychainItemName = @"Google Calendar API";
+static NSString *const kClientID = @"743064933737-gie4sbh4krr083r488rk8n8hi58osk3f.apps.googleusercontent.com";
+static NSString *const kClientSecret = @"8jWuUBjxczqKE2EzFG6vEl8a";
+
 @interface EventsTableViewController ()
 
 @end
 
 @implementation EventsTableViewController
+
+@synthesize service = _service;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,9 +29,105 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"EventCell"];
+    self.service = [[GTLServiceCalendar alloc] init];
+    self.service.authorizer = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName clientID:kClientID clientSecret:kClientSecret];
     
-    self.events = @[@"One",@"Two",@"Three",@"Four"];
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"EventCell"];
+}
+
+- (void) viewDidAppear:(BOOL)animated  {
+    if(! self.service.authorizer.canAuthorize){
+        [self presentViewController:[self createAuthController] animated:YES completion:nil];
+    } else {
+        [self fetchEvents];
+    }
+    
+}
+
+#pragma mark - Google Calendar Service Request
+
+// Construct a query and get a list of upcoming events from the user calendar. Display the
+// start dates and event summaries in the UITextView.
+- (void)fetchEvents {
+    GTLQueryCalendar *query = [GTLQueryCalendar queryForEventsListWithCalendarId:@"primary"];
+//    query.maxResults = 10;
+    
+    NSCalendar * calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
+    NSDate *minDate = [calendar dateBySettingHour: 0 minute: 0 second: 0 ofDate:[NSDate date] options: 0];
+    
+    NSDate * maxDate = [calendar dateByAddingUnit:NSCalendarUnitDay value:1 toDate:minDate options: 0];
+    
+    
+    query.timeMin = [GTLDateTime dateTimeWithDate:minDate
+                                         timeZone:[NSTimeZone localTimeZone]];
+    query.timeMax = [GTLDateTime dateTimeWithDate:maxDate
+                                         timeZone:[NSTimeZone localTimeZone]];
+    
+    query.singleEvents = YES;
+    query.orderBy = kGTLCalendarOrderByStartTime;
+    
+    [self.service executeQuery:query
+                      delegate:self
+             didFinishSelector:@selector(displayResultWithTicket:finishedWithObject:error:)];
+}
+
+- (void)displayResultWithTicket:(GTLServiceTicket *)ticket
+             finishedWithObject:(GTLCalendarEvents *)events
+                          error:(NSError *)error {
+    
+    NSMutableArray * evs = [NSMutableArray array];
+    
+    if (error == nil) {
+        if (events.items.count > 0) {
+            for (GTLCalendarEvent *event in events) {
+                
+                Event * ev = [[Event alloc] init];
+                
+                ev.startTime = [(event.start.dateTime ?: event.start.date) date];
+                ev.endTime = [(event.end.dateTime ?: event.end.date) date];
+                ev.title = event.summary;
+                ev.status = Idle;
+                
+                [evs addObject:ev];
+            }
+        }
+    }
+    
+    self.events = [NSArray arrayWithArray:evs];
+    [self.tableView reloadData];
+}
+
+#pragma mark - Auth Controller
+
+// Creates the auth controller for authorizing access to Google Calendar API.
+- (GTMOAuth2ViewControllerTouch *)createAuthController {
+    GTMOAuth2ViewControllerTouch *authController;
+    NSArray *scopes = [NSArray arrayWithObjects:kGTLAuthScopeCalendarReadonly, nil];
+    authController = [[GTMOAuth2ViewControllerTouch alloc]
+                      initWithScope:[scopes componentsJoinedByString:@" "]
+                      clientID:kClientID
+                      clientSecret:kClientSecret
+                      keychainItemName:kKeychainItemName
+                      delegate:self
+                      finishedSelector:@selector(viewController:finishedWithAuth:error:)];
+    return authController;
+}
+
+// Handle completion of the authorization process, and update the Google Calendar API
+// with the new credentials.
+- (void)viewController:(GTMOAuth2ViewControllerTouch *)viewController
+      finishedWithAuth:(GTMOAuth2Authentication *)authResult
+                 error:(NSError *)error {
+    if (error != nil) {
+//        [self showAlert:@"Authentication Error" message:error.localizedDescription];
+        self.service.authorizer = nil;
+    }
+    else {
+        self.service.authorizer = authResult;
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
