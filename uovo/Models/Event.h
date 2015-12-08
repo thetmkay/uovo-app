@@ -25,6 +25,8 @@ typedef NS_ENUM(NSUInteger, EventStatus)
 @property NSDate * checkOutTime;
 @property BOOL skipped;
 
+@property NSInteger colorId;
+
 @property EventStatus status;
 
 @end
