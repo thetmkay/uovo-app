@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 
 #import "Event.h"
+#import "EventControlView.h"
 
 @interface EventViewController : UIViewController
 
 @property Event *event;
+@property EventControlView * controlView;
 
 - (id)initWithEvent:(Event *)event;
 
