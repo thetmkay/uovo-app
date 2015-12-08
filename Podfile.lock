@@ -21,13 +21,16 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - ISO8601DateFormatter (0.7)
+  - Masonry (0.6.3)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - ISO8601DateFormatter (~> 0.7)
+  - Masonry (~> 0.6)
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   ISO8601DateFormatter: ab926648eebe497f4d167c0fd083992f959f1274
+  Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
 
 COCOAPODS: 0.38.0

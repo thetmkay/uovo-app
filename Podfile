@@ -4,6 +4,7 @@ platform :ios, '7.0'
 target 'uovo' do
 	pod "AFNetworking", "~> 2.0"
 	pod 'ISO8601DateFormatter', '~> 0.7'
+	pod 'Masonry', '~> 0.6'
 end
 
 target 'uovoTests' do
