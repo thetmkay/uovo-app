@@ -18,6 +18,7 @@
 		5EFFF3441C16D5DD007B322B /* EventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3431C16D5DD007B322B /* EventsTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5EFFF3471C16DD5E007B322B /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3461C16DD5E007B322B /* Event.m */; settings = {ASSET_TAGS = (); }; };
 		5EFFF3511C1744EA007B322B /* EventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3501C1744EA007B322B /* EventCell.m */; settings = {ASSET_TAGS = (); }; };
+		5EFFF3541C174D69007B322B /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3531C174D69007B322B /* EventViewController.m */; settings = {ASSET_TAGS = (); }; };
 		A840ECC9DCE4BC9DA417FC25 /* libPods-uovo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A066DFEBD95106A764594F75 /* libPods-uovo.a */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,8 @@
 		5EFFF3461C16DD5E007B322B /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Event.m; path = Models/Event.m; sourceTree = "<group>"; };
 		5EFFF34F1C1744EA007B322B /* EventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventCell.h; path = Views/EventCell.h; sourceTree = "<group>"; };
 		5EFFF3501C1744EA007B322B /* EventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventCell.m; path = Views/EventCell.m; sourceTree = "<group>"; };
+		5EFFF3521C174D69007B322B /* EventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventViewController.h; path = Controllers/EventViewController.h; sourceTree = "<group>"; };
+		5EFFF3531C174D69007B322B /* EventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventViewController.m; path = Controllers/EventViewController.m; sourceTree = "<group>"; };
 		913DF129039F67FA5AA24910 /* Pods-uovo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uovo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uovo/Pods-uovo.debug.xcconfig"; sourceTree = "<group>"; };
 		A066DFEBD95106A764594F75 /* libPods-uovo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-uovo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C08ED23236C9DBD3BB242766 /* Pods-uovo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uovo.release.xcconfig"; path = "Pods/Target Support Files/Pods-uovo/Pods-uovo.release.xcconfig"; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 				5EFFF3461C16DD5E007B322B /* Event.m */,
 				5EFFF34F1C1744EA007B322B /* EventCell.h */,
 				5EFFF3501C1744EA007B322B /* EventCell.m */,
+				5EFFF3521C174D69007B322B /* EventViewController.h */,
+				5EFFF3531C174D69007B322B /* EventViewController.m */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -353,6 +358,7 @@
 				5EFFF3101C163311007B322B /* AppDelegate.m in Sources */,
 				5EFFF3191C163311007B322B /* uovo.xcdatamodeld in Sources */,
 				5EFFF3471C16DD5E007B322B /* Event.m in Sources */,
+				5EFFF3541C174D69007B322B /* EventViewController.m in Sources */,
 				5EFFF3441C16D5DD007B322B /* EventsTableViewController.m in Sources */,
 				5EFFF3511C1744EA007B322B /* EventCell.m in Sources */,
 				5EFFF30D1C163311007B322B /* main.m in Sources */,
