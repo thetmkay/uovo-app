@@ -17,6 +17,7 @@
 		5EFFF3341C163312007B322B /* uovoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3331C163312007B322B /* uovoUITests.m */; };
 		5EFFF3441C16D5DD007B322B /* EventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3431C16D5DD007B322B /* EventsTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5EFFF3471C16DD5E007B322B /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3461C16DD5E007B322B /* Event.m */; settings = {ASSET_TAGS = (); }; };
+		A840ECC9DCE4BC9DA417FC25 /* libPods-uovo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A066DFEBD95106A764594F75 /* libPods-uovo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,9 @@
 		5EFFF3431C16D5DD007B322B /* EventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventsTableViewController.m; path = Controllers/EventsTableViewController.m; sourceTree = "<group>"; };
 		5EFFF3451C16DD5E007B322B /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Event.h; path = Models/Event.h; sourceTree = "<group>"; };
 		5EFFF3461C16DD5E007B322B /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Event.m; path = Models/Event.m; sourceTree = "<group>"; };
+		913DF129039F67FA5AA24910 /* Pods-uovo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uovo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uovo/Pods-uovo.debug.xcconfig"; sourceTree = "<group>"; };
+		A066DFEBD95106A764594F75 /* libPods-uovo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-uovo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C08ED23236C9DBD3BB242766 /* Pods-uovo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uovo.release.xcconfig"; path = "Pods/Target Support Files/Pods-uovo/Pods-uovo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A840ECC9DCE4BC9DA417FC25 /* libPods-uovo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +95,8 @@
 				5EFFF3271C163312007B322B /* uovoTests */,
 				5EFFF3321C163312007B322B /* uovoUITests */,
 				5EFFF3091C163311007B322B /* Products */,
+				966C0832224A80C71337976C /* Pods */,
+				99838012C4C28AF1EE08368A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -156,6 +163,23 @@
 			name = Events;
 			sourceTree = "<group>";
 		};
+		966C0832224A80C71337976C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				913DF129039F67FA5AA24910 /* Pods-uovo.debug.xcconfig */,
+				C08ED23236C9DBD3BB242766 /* Pods-uovo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		99838012C4C28AF1EE08368A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A066DFEBD95106A764594F75 /* libPods-uovo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -163,9 +187,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5EFFF3381C163312007B322B /* Build configuration list for PBXNativeTarget "uovo" */;
 			buildPhases = (
+				81774246AB67F81C02FB056C /* Check Pods Manifest.lock */,
 				5EFFF3041C163311007B322B /* Sources */,
 				5EFFF3051C163311007B322B /* Frameworks */,
 				5EFFF3061C163311007B322B /* Resources */,
+				3C8FBAAC51603C6ACF72392A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -280,6 +306,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3C8FBAAC51603C6ACF72392A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-uovo/Pods-uovo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		81774246AB67F81C02FB056C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5EFFF3041C163311007B322B /* Sources */ = {
@@ -427,6 +486,7 @@
 		};
 		5EFFF3391C163312007B322B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 913DF129039F67FA5AA24910 /* Pods-uovo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = uovo/Info.plist;
@@ -438,6 +498,7 @@
 		};
 		5EFFF33A1C163312007B322B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C08ED23236C9DBD3BB242766 /* Pods-uovo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = uovo/Info.plist;
@@ -514,6 +575,7 @@
 				5EFFF33A1C163312007B322B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5EFFF33B1C163312007B322B /* Build configuration list for PBXNativeTarget "uovoTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +584,7 @@
 				5EFFF33D1C163312007B322B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5EFFF33E1C163312007B322B /* Build configuration list for PBXNativeTarget "uovoUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +593,7 @@
 				5EFFF3401C163312007B322B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
