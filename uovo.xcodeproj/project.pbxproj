@@ -16,6 +16,7 @@
 		5EFFF3291C163312007B322B /* uovoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3281C163312007B322B /* uovoTests.m */; };
 		5EFFF3341C163312007B322B /* uovoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3331C163312007B322B /* uovoUITests.m */; };
 		5EFFF3441C16D5DD007B322B /* EventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3431C16D5DD007B322B /* EventsTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		5EFFF3471C16DD5E007B322B /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3461C16DD5E007B322B /* Event.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		5EFFF3351C163312007B322B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EFFF3421C16D5DD007B322B /* EventsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventsTableViewController.h; path = Controllers/EventsTableViewController.h; sourceTree = "<group>"; };
 		5EFFF3431C16D5DD007B322B /* EventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventsTableViewController.m; path = Controllers/EventsTableViewController.m; sourceTree = "<group>"; };
+		5EFFF3451C16DD5E007B322B /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Event.h; path = Models/Event.h; sourceTree = "<group>"; };
+		5EFFF3461C16DD5E007B322B /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Event.m; path = Models/Event.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +150,8 @@
 			children = (
 				5EFFF3421C16D5DD007B322B /* EventsTableViewController.h */,
 				5EFFF3431C16D5DD007B322B /* EventsTableViewController.m */,
+				5EFFF3451C16DD5E007B322B /* Event.h */,
+				5EFFF3461C16DD5E007B322B /* Event.m */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 			files = (
 				5EFFF3101C163311007B322B /* AppDelegate.m in Sources */,
 				5EFFF3191C163311007B322B /* uovo.xcdatamodeld in Sources */,
+				5EFFF3471C16DD5E007B322B /* Event.m in Sources */,
 				5EFFF3441C16D5DD007B322B /* EventsTableViewController.m in Sources */,
 				5EFFF30D1C163311007B322B /* main.m in Sources */,
 			);
