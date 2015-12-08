@@ -14,6 +14,6 @@
 
 @property Event *event;
 
-- (id) initWithEvent:(Event *)event
+- (id)initWithEvent:(Event *)event;
 
 @end
