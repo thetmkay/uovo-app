@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "EventsTableViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    EventsTableViewController * rootController = [[EventsTableViewController alloc] init];
+    
+    self.window.rootViewController = rootController;
+    
     return YES;
 }
 

@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		5EFFF30D1C163311007B322B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF30C1C163311007B322B /* main.m */; };
 		5EFFF3101C163311007B322B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF30F1C163311007B322B /* AppDelegate.m */; };
-		5EFFF3131C163311007B322B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3121C163311007B322B /* ViewController.m */; };
 		5EFFF3161C163311007B322B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EFFF3141C163311007B322B /* Main.storyboard */; };
 		5EFFF3191C163311007B322B /* uovo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3171C163311007B322B /* uovo.xcdatamodeld */; };
 		5EFFF31B1C163311007B322B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EFFF31A1C163311007B322B /* Assets.xcassets */; };
 		5EFFF31E1C163311007B322B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EFFF31C1C163311007B322B /* LaunchScreen.storyboard */; };
 		5EFFF3291C163312007B322B /* uovoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3281C163312007B322B /* uovoTests.m */; };
 		5EFFF3341C163312007B322B /* uovoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3331C163312007B322B /* uovoUITests.m */; };
+		5EFFF3441C16D5DD007B322B /* EventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3431C16D5DD007B322B /* EventsTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +40,6 @@
 		5EFFF30C1C163311007B322B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5EFFF30E1C163311007B322B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5EFFF30F1C163311007B322B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5EFFF3111C163311007B322B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5EFFF3121C163311007B322B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5EFFF3151C163311007B322B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5EFFF3181C163311007B322B /* uovo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = uovo.xcdatamodel; sourceTree = "<group>"; };
 		5EFFF31A1C163311007B322B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,6 +51,8 @@
 		5EFFF32F1C163312007B322B /* uovoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uovoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EFFF3331C163312007B322B /* uovoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = uovoUITests.m; sourceTree = "<group>"; };
 		5EFFF3351C163312007B322B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5EFFF3421C16D5DD007B322B /* EventsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventsTableViewController.h; path = Controllers/EventsTableViewController.h; sourceTree = "<group>"; };
+		5EFFF3431C16D5DD007B322B /* EventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventsTableViewController.m; path = Controllers/EventsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,10 +103,9 @@
 		5EFFF30A1C163311007B322B /* uovo */ = {
 			isa = PBXGroup;
 			children = (
+				5EFFF3411C16D5AF007B322B /* Events */,
 				5EFFF30E1C163311007B322B /* AppDelegate.h */,
 				5EFFF30F1C163311007B322B /* AppDelegate.m */,
-				5EFFF3111C163311007B322B /* ViewController.h */,
-				5EFFF3121C163311007B322B /* ViewController.m */,
 				5EFFF3141C163311007B322B /* Main.storyboard */,
 				5EFFF31A1C163311007B322B /* Assets.xcassets */,
 				5EFFF31C1C163311007B322B /* LaunchScreen.storyboard */,
@@ -141,6 +140,15 @@
 				5EFFF3351C163312007B322B /* Info.plist */,
 			);
 			path = uovoUITests;
+			sourceTree = "<group>";
+		};
+		5EFFF3411C16D5AF007B322B /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				5EFFF3421C16D5DD007B322B /* EventsTableViewController.h */,
+				5EFFF3431C16D5DD007B322B /* EventsTableViewController.m */,
+			);
+			name = Events;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,9 +281,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EFFF3131C163311007B322B /* ViewController.m in Sources */,
 				5EFFF3101C163311007B322B /* AppDelegate.m in Sources */,
 				5EFFF3191C163311007B322B /* uovo.xcdatamodeld in Sources */,
+				5EFFF3441C16D5DD007B322B /* EventsTableViewController.m in Sources */,
 				5EFFF30D1C163311007B322B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
