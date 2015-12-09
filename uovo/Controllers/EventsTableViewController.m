@@ -43,37 +43,26 @@ static NSString *const kClientSecret = @"8jWuUBjxczqKE2EzFG6vEl8a";
 // start dates and event summaries in the UITextView.
 - (void)fetchEvents {
     
-    ISO8601DateFormatter * formatter = [[ISO8601DateFormatter alloc] init];
+    
 
-    
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:@"http://localhost:3000/events" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSMutableArray * mutableEvents = [NSMutableArray array];
-        for(NSDictionary * event in responseObject) {
-            Event * ev = [[Event alloc] init];
+    [UovoService getEventsWithHandler:^(NSError *error, NSArray *events) {
+        if(error != nil){
+            NSLog(@"Error: %@", error);
+            self.events = [NSArray array];
+        } else {
+            NSMutableArray * mutableEvents = [NSMutableArray array];
+            for(NSDictionary * event in events) {
             
-            ev.title = [event objectForKey:@"title"];
-            //ignore timezone
-            ev.startTime = [formatter dateFromString:[event objectForKey:@"startDate"]];
-            ev.endTime = [formatter dateFromString:[event objectForKey:@"endDate"]];
-            ev.colorId = [[event objectForKey:@"colorId"] integerValue];
+                [mutableEvents addObject:[Event createFromJSON:event]];
+                
+                NSLog(@"%@",[event objectForKey:@"name"]);
+            }
             
-            [mutableEvents addObject:ev];
-            
-            NSLog(@"%@",[event objectForKey:@"name"]);
+            self.events = [NSArray arrayWithArray:mutableEvents];
         }
-        
-        self.events = [NSArray arrayWithArray:mutableEvents];
+
         [self.tableView reloadData];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        //deal with error
-        self.events = [NSArray array];
-        [self.tableView reloadData];
-        
-        NSLog(@"Error: %@", operation );
+
     }];
 }
 

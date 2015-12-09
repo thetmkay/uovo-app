@@ -21,10 +21,7 @@
     [self.view setClipsToBounds:YES];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-
-    
-    self.controlView =  [[EventControlView alloc] init];
-    [self.controlView configureForStatus:Idle];
+    self.controlView =  [[EventControlView alloc] initWithEvent:self.event];
     
     [self.view addSubview:self.controlView];
     [self.view setLayoutMargins:UIEdgeInsetsZero];
@@ -36,6 +33,8 @@
     }];
     
     [self initTextViews];
+    
+    [self.navigationItem setTitle:self.event.title];
     
     return self;
 }

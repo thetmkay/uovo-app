@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AFNetworking.h"
+#import "UovoService.h"
 #import "Event.h"
 #import "EventCell.h"
 #import "EventViewController.h"

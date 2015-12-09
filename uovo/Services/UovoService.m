@@ -18,9 +18,14 @@
     
     NSDate * date = [NSDate date];
     
-    ISO8601DateFormatter * formatter = [[ISO8601DateFormatter alloc] init];
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+    [formatter setLocale:enUSPOSIXLocale];
+    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
     
-    return [formatter stringFromDate:date timeZone: [NSTimeZone timeZoneWithName:@"UTC" ]];
+//    ISO8601DateFormatter * formatter = [[ISO8601DateFormatter alloc] init];
+    
+    return [formatter stringFromDate:date];
 }
 
 +(void) getEventsWithHandler:(void (^)(NSError * error, NSArray * events)) handler{
@@ -32,10 +37,12 @@
     }];
 }
 
-+(void) checkInForEvent:(NSString *)eventId andCompletionHandler:(void (^)(NSError* error)) handler{
++(void) checkInForEvent:(NSString *)eventId andCompletionHandler:(void (^)(NSError* error, NSDate * checkInTime)) handler{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    NSString * checkInTime = [self nowInISOString];
     
-    NSDictionary * parameters = @{@"eventId": eventId, @"checkInTime": [self nowInISOString]};
+    NSDictionary * parameters = @{@"eventId": eventId, @"checkInTime": checkInTime};
     
     [manager POST:@"http://localhost:3000/event/checkin" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         handler(nil);
@@ -44,9 +51,9 @@
     }];
 }
 
-+(void) checkOutForEvent:(NSString *)eventId andCompletionHandler:(void (^)(NSError * error)) handler{
++(void) checkOutForEvent:(NSString *)eventId andCompletionHandler:(void (^)(NSError * error, NSDate * checkOutTime)) handler{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     NSDictionary * parameters = @{@"eventId": eventId, @"checkOutTime": [self nowInISOString]};
     
     [manager POST:@"http://localhost:3000/event/checkout" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -58,7 +65,7 @@
 
 +(void)skipEvent:(NSString *)eventId andCompletionHandler:(void (^)(NSError * error)) handler{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     NSDictionary * parameters = @{@"eventId": eventId};
     
     [manager POST:@"http://localhost:3000/event/skip" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {

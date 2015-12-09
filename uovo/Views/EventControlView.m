@@ -18,19 +18,54 @@
 }
 */
 
+-(id) initWithEvent:(Event *)event{
+    self = [super init];
+    
+    self.event = event;
+    
+    if(self.event.skipped) {
+        [self configureForStatus:Skipped];
+    } else if(self.event.checkOutTime != nil){
+        [self configureForStatus:CheckedOut];
+    } else if(self.event.checkInTime != nil) {
+        [self configureForStatus:CheckedIn];
+    } else {
+        [self configureForStatus:Idle];
+    }
+    
+    return self;
+}
+
 -(IBAction)checkIn:(id)sender {
-    NSLog(@"checkIn");
-    [self configureForStatus:CheckedIn];
+    
+    [UovoService checkInForEvent:self.event.eventId andCompletionHandler:^(NSError *error) {
+        if(error == nil){
+            [self configureForStatus:CheckedIn];
+        } else{
+            NSLog(@"Check In Error: %@", error);
+        }
+    }];
+    
 }
 
 -(IBAction)checkOut:(id)sender {
-    NSLog(@"checkOut");
-    [self configureForStatus:CheckedOut];
+    [UovoService checkOutForEvent:self.event.eventId andCompletionHandler:^(NSError *error) {
+        if(error == nil){
+            [self configureForStatus:CheckedOut];
+        } else{
+            NSLog(@"Check Out Error: %@", error);
+        }
+    }];
 }
 
 -(IBAction)skip:(id)sender {
-    NSLog(@"skip");
-    [self configureForStatus:Skipped];
+    [UovoService skipEvent:self.event.eventId andCompletionHandler:^(NSError *error) {
+        if(error == nil){
+            [self configureForStatus:Skipped];
+        } else{
+            NSLog(@"Skip Error: %@", error);
+        }
+    }];
 }
 
 -(void)configureForStatus:(EventStatus)status{
@@ -67,7 +102,7 @@
         [[self.containerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     }
     
-    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.containerView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self);
         make.centerX.equalTo(self);
     }];
@@ -103,6 +138,11 @@
     [self.containerView addSubview:self.inButton];
     [self.containerView addSubview:self.skipButton];
     
+    [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.greaterThanOrEqualTo(self.inButton);
+        make.height.greaterThanOrEqualTo(self.skipButton);
+    }];
+    
     [self.inButton mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.width.height.equalTo(@100);
         make.centerY.equalTo(self.containerView);
@@ -136,6 +176,11 @@
     [self.containerView addSubview:self.outButton];
     [self.containerView addSubview:self.timeText];
     
+    [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.width.greaterThanOrEqualTo(self.timeText);
+        make.width.greaterThanOrEqualTo(self.outButton);
+    }];
+    
     [self.outButton mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.width.height.equalTo(@100);
         make.centerX.bottom.equalTo(self.containerView);
@@ -166,6 +211,11 @@
     [self.containerView addSubview:self.outText];
     [self.containerView addSubview:self.timeText];
     
+    [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.width.greaterThanOrEqualTo(self.outText);
+        make.width.greaterThanOrEqualTo(self.timeText);
+    }];
+    
     [self.outText mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerX.bottom.equalTo(self.containerView);
         make.top.equalTo(self.timeText.mas_bottom).with.offset(50);
@@ -193,6 +243,11 @@
     
     [self.containerView addSubview:self.skippedText];
     [self.containerView addSubview:self.skippedX];
+    
+    [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.width.greaterThanOrEqualTo(self.skippedText);
+        make.width.greaterThanOrEqualTo(self.skippedX);
+    }];
     
     [self.skippedText mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerX.bottom.equalTo(self.containerView);

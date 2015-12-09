@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "ISO8601DateFormatter.h"
+
 typedef NS_ENUM(NSUInteger, EventStatus)
 {
     Idle,
@@ -17,6 +19,8 @@ typedef NS_ENUM(NSUInteger, EventStatus)
 };
 
 @interface Event : NSObject
+
+@property NSString * eventId;
 
 @property NSString * title;
 @property NSDate * startTime;
@@ -28,5 +32,7 @@ typedef NS_ENUM(NSUInteger, EventStatus)
 @property NSInteger colorId;
 
 @property EventStatus status;
+
++(Event *)createFromJSON:(NSDictionary *)json;
 
 @end

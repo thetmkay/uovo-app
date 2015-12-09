@@ -10,4 +10,23 @@
 
 @implementation Event
 
++(Event *)createFromJSON:(NSDictionary *)json{
+    
+    ISO8601DateFormatter * formatter = [[ISO8601DateFormatter alloc] init];
+    
+    Event * event = [[Event alloc] init];
+    
+    event.eventId = [json objectForKey:@"eventId"];
+    event.title = [json objectForKey:@"name"];
+    //ignore timezone
+    event.startTime = [formatter dateFromString:[json objectForKey:@"startTime"]];
+    event.endTime = [formatter dateFromString:[json objectForKey:@"endTime"]];
+    event.colorId = [[json objectForKey:@"colorId"] integerValue];
+    event.checkInTime = [formatter dateFromString:[json objectForKey:@"checkInTime"]];
+    event.checkOutTime = [formatter dateFromString:[json objectForKey:@"checkOutTime"]];
+    event.skipped = [[json objectForKey:@"skipped"] boolValue];
+    
+    return event;
+}
+
 @end

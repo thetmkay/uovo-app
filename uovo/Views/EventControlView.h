@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-
+#import "UovoService.h"
 #import "Event.h"
-#import "RoundButton.h"
 
 #import "Masonry.h"
 
@@ -26,6 +25,8 @@
 
 @property UIView *containerView;
 
--(void)configureForStatus:(EventStatus) status;
+@property Event * event;
+
+-(id)initWithEvent:(Event *)event;
 
 @end
