@@ -38,8 +38,9 @@
 
 -(IBAction)checkIn:(id)sender {
     
-    [UovoService checkInForEvent:self.event.eventId andCompletionHandler:^(NSError *error) {
+    [UovoService checkInForEvent:self.event.eventId andCompletionHandler:^(NSError *error, NSDate* checkInTime) {
         if(error == nil){
+            self.event.checkInTime = checkInTime;
             [self configureForStatus:CheckedIn];
         } else{
             NSLog(@"Check In Error: %@", error);
@@ -49,8 +50,9 @@
 }
 
 -(IBAction)checkOut:(id)sender {
-    [UovoService checkOutForEvent:self.event.eventId andCompletionHandler:^(NSError *error) {
+    [UovoService checkOutForEvent:self.event.eventId andCompletionHandler:^(NSError *error, NSDate * checkOutTime) {
         if(error == nil){
+            self.event.checkOutTime = checkOutTime;
             [self configureForStatus:CheckedOut];
         } else{
             NSLog(@"Check Out Error: %@", error);
@@ -61,6 +63,7 @@
 -(IBAction)skip:(id)sender {
     [UovoService skipEvent:self.event.eventId andCompletionHandler:^(NSError *error) {
         if(error == nil){
+            self.event.skipped = YES;
             [self configureForStatus:Skipped];
         } else{
             NSLog(@"Skip Error: %@", error);

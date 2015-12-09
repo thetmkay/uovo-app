@@ -45,9 +45,14 @@
     NSDictionary * parameters = @{@"eventId": eventId, @"checkInTime": checkInTime};
     
     [manager POST:@"http://localhost:3000/event/checkin" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        handler(nil);
+        
+        ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
+        
+        NSDate * checkInTime = [formatter dateFromString:[responseObject objectForKey:@"check_in_time"]];
+        
+        handler(nil, checkInTime);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        handler(error);
+        handler(error, nil);
     }];
 }
 
@@ -57,9 +62,14 @@
     NSDictionary * parameters = @{@"eventId": eventId, @"checkOutTime": [self nowInISOString]};
     
     [manager POST:@"http://localhost:3000/event/checkout" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        handler(nil);
+        
+        ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
+        
+        NSDate * checkOutTime = [formatter dateFromString:[responseObject objectForKey:@"check_out_time"]];
+        
+        handler(nil, checkOutTime);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        handler(error);
+        handler(error, nil);
     }];
 }
 

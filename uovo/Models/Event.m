@@ -22,9 +22,15 @@
     event.startTime = [formatter dateFromString:[json objectForKey:@"startTime"]];
     event.endTime = [formatter dateFromString:[json objectForKey:@"endTime"]];
     event.colorId = [[json objectForKey:@"colorId"] integerValue];
-    event.checkInTime = [formatter dateFromString:[json objectForKey:@"checkInTime"]];
-    event.checkOutTime = [formatter dateFromString:[json objectForKey:@"checkOutTime"]];
-    event.skipped = [[json objectForKey:@"skipped"] boolValue];
+    if([[json objectForKey:@"checkInTime"] isKindOfClass:[NSString class]]) {
+         event.checkInTime = [formatter dateFromString:[json objectForKey:@"checkInTime"]];
+    }
+    if([[json objectForKey:@"checkOutTime"] isKindOfClass:[NSString class] ]){
+        event.checkOutTime = [formatter dateFromString:[json objectForKey:@"checkOutTime"]];
+    }
+    if([[json objectForKey:@"skipped"] isKindOfClass: [NSString class] ]){
+        event.skipped = [[json objectForKey:@"skipped"] boolValue];
+    }
     
     return event;
 }

@@ -13,8 +13,8 @@
 @interface UovoService : NSObject
 
 +(void) getEventsWithHandler:(void (^)(NSError * error, NSArray * events)) handler;
-+(void) checkInForEvent:(NSString *)eventId andCompletionHandler:(void (^)(NSError* error)) handler;
-+(void) checkOutForEvent:(NSString *)eventId andCompletionHandler:(void (^)(NSError * error)) handler;
++(void) checkInForEvent:(NSString *)eventId andCompletionHandler:(void (^)(NSError* error, NSDate * checkInTime)) handler;
++(void) checkOutForEvent:(NSString *)eventId andCompletionHandler:(void (^)(NSError * error, NSDate * checkOutTime)) handler;
 +(void)skipEvent:(NSString *)eventId andCompletionHandler:(void (^)(NSError * error)) handler;
 
 @end
