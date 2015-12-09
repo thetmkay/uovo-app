@@ -34,7 +34,7 @@
     
     [self initTextViews];
     
-    [self.navigationItem setTitle:self.event.title];
+    [self.navigationItem setTitle:self.event.name];
     
     return self;
 }
@@ -82,7 +82,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.navigationItem setTitle:self.event.title];
 }
 
 - (void)didReceiveMemoryWarning {

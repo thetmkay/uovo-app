@@ -34,7 +34,7 @@
     NSString * startTime = [timeFormatter stringFromDate: event.startTime] ;
     NSString * endTime = [timeFormatter stringFromDate:event.endTime];
     
-    self.textLabel.text = event.title;
+    self.textLabel.text = event.name;
     self.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
 }
 

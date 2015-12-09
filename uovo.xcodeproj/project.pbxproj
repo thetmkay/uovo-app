@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A43A96E96DB82152B39DBF8 /* Pods_uovo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0ED71F26CFDA4C1987D57A0 /* Pods_uovo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5E90C2C41C185E160071E94C /* UovoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E90C2C31C185E160071E94C /* UovoService.m */; };
 		5E90C2C91C186EA90071E94C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E90C2C81C186EA90071E94C /* Default-568h@2x.png */; };
+		5E90C2D41C18C82C0071E94C /* Event+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E90C2D11C18C82C0071E94C /* Event+CoreDataProperties.m */; };
+		5E90C2D51C18C82C0071E94C /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E90C2D31C18C82C0071E94C /* Event.m */; };
+		5E90C2E01C18EF000071E94C /* Schedule+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E90C2DD1C18EF000071E94C /* Schedule+CoreDataProperties.m */; };
+		5E90C2E11C18EF000071E94C /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E90C2DF1C18EF000071E94C /* Schedule.m */; };
 		5EFFF30D1C163311007B322B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF30C1C163311007B322B /* main.m */; };
 		5EFFF3101C163311007B322B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF30F1C163311007B322B /* AppDelegate.m */; };
 		5EFFF3191C163311007B322B /* uovo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3171C163311007B322B /* uovo.xcdatamodeld */; };
@@ -16,11 +21,9 @@
 		5EFFF3291C163312007B322B /* uovoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3281C163312007B322B /* uovoTests.m */; };
 		5EFFF3341C163312007B322B /* uovoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3331C163312007B322B /* uovoUITests.m */; };
 		5EFFF3441C16D5DD007B322B /* EventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3431C16D5DD007B322B /* EventsTableViewController.m */; };
-		5EFFF3471C16DD5E007B322B /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3461C16DD5E007B322B /* Event.m */; };
 		5EFFF3511C1744EA007B322B /* EventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3501C1744EA007B322B /* EventCell.m */; };
 		5EFFF3541C174D69007B322B /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3531C174D69007B322B /* EventViewController.m */; };
 		5EFFF3571C176F40007B322B /* EventControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3561C176F40007B322B /* EventControlView.m */; };
-		A840ECC9DCE4BC9DA417FC25 /* libPods-uovo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A066DFEBD95106A764594F75 /* libPods-uovo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,14 @@
 		5E90C2C31C185E160071E94C /* UovoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UovoService.m; path = Services/UovoService.m; sourceTree = "<group>"; };
 		5E90C2C51C186CC60071E94C /* uovo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uovo-Prefix.pch"; sourceTree = "<group>"; };
 		5E90C2C81C186EA90071E94C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		5E90C2D01C18C82C0071E94C /* Event+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+CoreDataProperties.h"; sourceTree = "<group>"; };
+		5E90C2D11C18C82C0071E94C /* Event+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+CoreDataProperties.m"; sourceTree = "<group>"; };
+		5E90C2D21C18C82C0071E94C /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		5E90C2D31C18C82C0071E94C /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		5E90C2DC1C18EF000071E94C /* Schedule+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Schedule+CoreDataProperties.h"; path = "Models/Schedule+CoreDataProperties.h"; sourceTree = "<group>"; };
+		5E90C2DD1C18EF000071E94C /* Schedule+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Schedule+CoreDataProperties.m"; path = "Models/Schedule+CoreDataProperties.m"; sourceTree = "<group>"; };
+		5E90C2DE1C18EF000071E94C /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Schedule.h; path = Models/Schedule.h; sourceTree = "<group>"; };
+		5E90C2DF1C18EF000071E94C /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Schedule.m; path = Models/Schedule.m; sourceTree = "<group>"; };
 		5EFFF3081C163311007B322B /* uovo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uovo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EFFF30C1C163311007B322B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5EFFF30E1C163311007B322B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -60,8 +71,6 @@
 		5EFFF3351C163312007B322B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EFFF3421C16D5DD007B322B /* EventsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventsTableViewController.h; path = Controllers/EventsTableViewController.h; sourceTree = "<group>"; };
 		5EFFF3431C16D5DD007B322B /* EventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventsTableViewController.m; path = Controllers/EventsTableViewController.m; sourceTree = "<group>"; };
-		5EFFF3451C16DD5E007B322B /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Event.h; path = Models/Event.h; sourceTree = "<group>"; };
-		5EFFF3461C16DD5E007B322B /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Event.m; path = Models/Event.m; sourceTree = "<group>"; };
 		5EFFF34F1C1744EA007B322B /* EventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventCell.h; path = Views/EventCell.h; sourceTree = "<group>"; };
 		5EFFF3501C1744EA007B322B /* EventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventCell.m; path = Views/EventCell.m; sourceTree = "<group>"; };
 		5EFFF3521C174D69007B322B /* EventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventViewController.h; path = Controllers/EventViewController.h; sourceTree = "<group>"; };
@@ -69,8 +78,8 @@
 		5EFFF3551C176F40007B322B /* EventControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventControlView.h; path = Views/EventControlView.h; sourceTree = "<group>"; };
 		5EFFF3561C176F40007B322B /* EventControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventControlView.m; path = Views/EventControlView.m; sourceTree = "<group>"; };
 		913DF129039F67FA5AA24910 /* Pods-uovo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uovo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-uovo/Pods-uovo.debug.xcconfig"; sourceTree = "<group>"; };
-		A066DFEBD95106A764594F75 /* libPods-uovo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-uovo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C08ED23236C9DBD3BB242766 /* Pods-uovo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uovo.release.xcconfig"; path = "Pods/Target Support Files/Pods-uovo/Pods-uovo.release.xcconfig"; sourceTree = "<group>"; };
+		F0ED71F26CFDA4C1987D57A0 /* Pods_uovo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uovo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A840ECC9DCE4BC9DA417FC25 /* libPods-uovo.a in Frameworks */,
+				5A43A96E96DB82152B39DBF8 /* Pods_uovo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,10 +185,16 @@
 		5EFFF3411C16D5AF007B322B /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				5E90C2DC1C18EF000071E94C /* Schedule+CoreDataProperties.h */,
+				5E90C2DD1C18EF000071E94C /* Schedule+CoreDataProperties.m */,
+				5E90C2DE1C18EF000071E94C /* Schedule.h */,
+				5E90C2DF1C18EF000071E94C /* Schedule.m */,
+				5E90C2D01C18C82C0071E94C /* Event+CoreDataProperties.h */,
+				5E90C2D11C18C82C0071E94C /* Event+CoreDataProperties.m */,
+				5E90C2D21C18C82C0071E94C /* Event.h */,
+				5E90C2D31C18C82C0071E94C /* Event.m */,
 				5EFFF3421C16D5DD007B322B /* EventsTableViewController.h */,
 				5EFFF3431C16D5DD007B322B /* EventsTableViewController.m */,
-				5EFFF3451C16DD5E007B322B /* Event.h */,
-				5EFFF3461C16DD5E007B322B /* Event.m */,
 				5EFFF34F1C1744EA007B322B /* EventCell.h */,
 				5EFFF3501C1744EA007B322B /* EventCell.m */,
 				5EFFF3521C174D69007B322B /* EventViewController.h */,
@@ -202,7 +217,7 @@
 		99838012C4C28AF1EE08368A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A066DFEBD95106A764594F75 /* libPods-uovo.a */,
+				F0ED71F26CFDA4C1987D57A0 /* Pods_uovo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -219,6 +234,7 @@
 				5EFFF3051C163311007B322B /* Frameworks */,
 				5EFFF3061C163311007B322B /* Resources */,
 				3C8FBAAC51603C6ACF72392A /* Copy Pods Resources */,
+				4207E7D63E5A4E18C540DB54 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -349,6 +365,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-uovo/Pods-uovo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4207E7D63E5A4E18C540DB54 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-uovo/Pods-uovo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		81774246AB67F81C02FB056C /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -373,8 +404,11 @@
 			files = (
 				5EFFF3101C163311007B322B /* AppDelegate.m in Sources */,
 				5EFFF3191C163311007B322B /* uovo.xcdatamodeld in Sources */,
+				5E90C2D51C18C82C0071E94C /* Event.m in Sources */,
+				5E90C2E01C18EF000071E94C /* Schedule+CoreDataProperties.m in Sources */,
+				5E90C2D41C18C82C0071E94C /* Event+CoreDataProperties.m in Sources */,
 				5E90C2C41C185E160071E94C /* UovoService.m in Sources */,
-				5EFFF3471C16DD5E007B322B /* Event.m in Sources */,
+				5E90C2E11C18EF000071E94C /* Schedule.m in Sources */,
 				5EFFF3571C176F40007B322B /* EventControlView.m in Sources */,
 				5EFFF3541C174D69007B322B /* EventViewController.m in Sources */,
 				5EFFF3441C16D5DD007B322B /* EventsTableViewController.m in Sources */,
@@ -500,6 +534,7 @@
 			baseConfigurationReference = 913DF129039F67FA5AA24910 /* Pods-uovo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$SRCROOT/$PROJECT_NAME/uovo-Prefix.pch";
 				INFOPLIST_FILE = uovo/Info.plist;
@@ -514,6 +549,7 @@
 			baseConfigurationReference = C08ED23236C9DBD3BB242766 /* Pods-uovo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$SRCROOT/$PROJECT_NAME/uovo-Prefix.pch";
 				INFOPLIST_FILE = uovo/Info.plist;

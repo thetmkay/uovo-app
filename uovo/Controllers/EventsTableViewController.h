@@ -12,6 +12,8 @@
 #import "EventCell.h"
 #import "EventViewController.h"
 #import "ISO8601DateFormatter.h"
+#import "AppDelegate.h"
+#import "Schedule.h"
 
 @interface EventsTableViewController : UITableViewController
 

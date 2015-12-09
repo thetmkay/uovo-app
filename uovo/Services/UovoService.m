@@ -30,8 +30,27 @@
 
 +(void) getEventsWithHandler:(void (^)(NSError * error, NSArray * events)) handler{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET: [self urlForEndpoint:@"events"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        handler(nil,responseObject);
+    
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+    
+    NSString * endpoint = [NSString stringWithFormat:@"events/%@", [dateFormatter stringFromDate:[NSDate date]]];
+    
+    [manager GET: [self urlForEndpoint:endpoint] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        DATAStack * dataStack = [(AppDelegate *)[[UIApplication sharedApplication] delegate] dataStack];
+        
+        [Sync changes:@[responseObject]
+        inEntityNamed:@"Schedule"
+            dataStack:dataStack
+           completion:^(NSError *error) {
+               NSLog(@"Sync error: %@", error);
+               [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+           }];
+        
+        handler(nil, [responseObject objectForKey:@"events"]);
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         handler(error, nil);
     }];
@@ -45,7 +64,7 @@
     NSDictionary * parameters = @{@"eventId": eventId, @"checkInTime": checkInTime};
     
     [manager POST:@"http://localhost:3000/event/checkin" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+ 
         ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
         
         NSDate * checkInTime = [formatter dateFromString:[responseObject objectForKey:@"check_in_time"]];

@@ -12,6 +12,8 @@ static NSString *const kKeychainItemName = @"Google Calendar API";
 static NSString *const kClientID = @"743064933737-gie4sbh4krr083r488rk8n8hi58osk3f.apps.googleusercontent.com";
 static NSString *const kClientSecret = @"8jWuUBjxczqKE2EzFG6vEl8a";
 
+
+
 @interface EventsTableViewController ()
 
 @end
@@ -36,35 +38,52 @@ static NSString *const kClientSecret = @"8jWuUBjxczqKE2EzFG6vEl8a";
 }
 
 
-
-#pragma mark - Google Calendar Service Request
-
-// Construct a query and get a list of upcoming events from the user calendar. Display the
-// start dates and event summaries in the UITextView.
 - (void)fetchEvents {
     
+    NSDate *startDate = [NSDate date];
+    NSTimeInterval day;
+    
+    [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay startDate:&startDate interval:&day forDate:startDate];
+    
+    NSDate * endDate = [startDate dateByAddingTimeInterval:day];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(date >= %@) AND (date < %@)", startDate, endDate];
+    
+    NSManagedObjectContext *moc = [[(AppDelegate *)[[UIApplication sharedApplication] delegate] dataStack] mainContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Schedule" inManagedObjectContext:moc];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entity];
+    [request setPredicate:predicate];
+    // Fetch the records and handle an error
+    NSError *error;
+    id response =[[moc executeFetchRequest:request error:&error] mutableCopy];
+
+    
     
 
-    [UovoService getEventsWithHandler:^(NSError *error, NSArray *events) {
-        if(error != nil){
-            NSLog(@"Error: %@", error);
-            self.events = [NSArray array];
-        } else {
-            NSMutableArray * mutableEvents = [NSMutableArray array];
-            for(NSDictionary * event in events) {
-            
-                [mutableEvents addObject:[Event createFromJSON:event]];
-                
-                NSLog(@"%@",[event objectForKey:@"name"]);
-            }
-            
-            self.events = [NSArray arrayWithArray:mutableEvents];
-        }
-
-        [self.tableView reloadData];
-
-    }];
+    if(error != nil) {
+        NSLog(@"Fetch Error: %@", error);
+    }
+    
+    NSOrderedSet * events = [[ response valueForKey:@"events"] objectAtIndex:0];
+    self.events = [events array];
+    
+    if(self.events == nil) {
+        self.events = [NSArray array];
+        NSLog(@"error reading core data");
+    }
+    
+    if(self.events.count == 0){
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [UovoService getEventsWithHandler:^(NSError *error, NSArray *events) {
+                if(error == nil){
+                    self.events = events;
+                }
+            }];
+        });
+    }
 }
+
 
 
 - (void)didReceiveMemoryWarning {

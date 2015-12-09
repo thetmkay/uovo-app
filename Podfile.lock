@@ -20,20 +20,49 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - DATAFilter (0.8.4):
+    - DATAObjectIDs
+  - DATAObjectIDs (0.5.1)
+  - DATAStack (3.1.2):
+    - NSObject-HYPTesting (~> 1.2)
   - ISO8601DateFormatter (0.7)
   - Masonry (0.6.3)
   - MZTimerLabel (0.5.4)
+  - NSDictionary-ANDYSafeValue (0.3)
+  - NSEntityDescription-SYNCPrimaryKey (0.1.0):
+    - NSString-HYPNetworking
+  - NSManagedObject-HYPPropertyMapper (3.3.2):
+    - NSString-HYPNetworking (~> 0.3.2)
+  - NSObject-HYPTesting (1.2)
+  - NSString-HYPNetworking (0.3.3)
+  - Sync (1.0.13):
+    - DATAFilter (~> 0.8.4)
+    - DATAStack (~> 3.1.2)
+    - NSDictionary-ANDYSafeValue (~> 0.3)
+    - NSEntityDescription-SYNCPrimaryKey (~> 0.1.0)
+    - NSManagedObject-HYPPropertyMapper (~> 3.3.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - DATAStack
   - ISO8601DateFormatter (~> 0.7)
   - Masonry (~> 0.6)
   - MZTimerLabel (~> 0.5)
+  - Sync
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  DATAFilter: 3f224f9ffde5c04de4748b65cc259c6481770edf
+  DATAObjectIDs: 33db74dd1c858c2d22a45a4013c95f1082182e4e
+  DATAStack: 931172971443d745b60a4b95adf50e0c8cfb9790
   ISO8601DateFormatter: ab926648eebe497f4d167c0fd083992f959f1274
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
   MZTimerLabel: cd9bfb9304540ef2a9e163384fca9c978f0dbf83
+  NSDictionary-ANDYSafeValue: c15ff39a6b1b82a52ea277c64520c7b574715afc
+  NSEntityDescription-SYNCPrimaryKey: 72f1f0d30a7e8eb9d93277b1ce623cbaa6e47a38
+  NSManagedObject-HYPPropertyMapper: 63fba8046d728625a37c86738262d0b0c7015744
+  NSObject-HYPTesting: fadde70c75061b731b313c390e20777aed0a914d
+  NSString-HYPNetworking: 3b07da48f9f65a33d26e0467da8155bbb18d52bd
+  Sync: 1dc91555ef9baf63940dc964625ba1286bf34bd7
 
 COCOAPODS: 0.38.0

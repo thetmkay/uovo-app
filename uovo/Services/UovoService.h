@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFNetworking.h"
-#import "ISO8601DateFormatter.h"
+#import "AFNetworking/AFNetworking.h"
+#import "AppDelegate.h"
+#import "ISO8601DateFormatter/ISO8601DateFormatter.h"
+#import "Sync/Sync.h"
 
 @interface UovoService : NSObject
 
