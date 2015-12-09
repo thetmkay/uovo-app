@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UovoService.h"
 #import "Event.h"
+#import "MZTimerLabel.h"
 
 #import "Masonry.h"
 
@@ -20,7 +21,9 @@
 @property UIButton * skipButton;
 @property UILabel * skippedText;
 @property UILabel * skippedX;
+@property MZTimerLabel * timer;
 @property UILabel * timeText;
+@property UILabel * durationText;
 @property UILabel * outText;
 
 @property UIView *containerView;

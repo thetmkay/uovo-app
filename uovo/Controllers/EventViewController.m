@@ -52,7 +52,7 @@
 
     
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"DD/MM/YYYY' at 'H:mm"];
+    [dateFormatter setDateFormat:@"dd/MM/YYYY' at 'H:mm"];
     
     UILabel * startTime = [[UILabel alloc] init];
     startTime.text = [dateFormatter stringFromDate:self.event.startTime];

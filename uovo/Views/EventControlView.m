@@ -50,6 +50,7 @@
 }
 
 -(IBAction)checkOut:(id)sender {
+    
     [UovoService checkOutForEvent:self.event.eventId andCompletionHandler:^(NSError *error, NSDate * checkOutTime) {
         if(error == nil){
             self.event.checkOutTime = checkOutTime;
@@ -170,8 +171,16 @@
     }
     
     if(self.timeText == nil) {
+        
+        NSTimeInterval timePassed = [self.event.checkInTime timeIntervalSinceNow];
+        NSTimeInterval duration = [self.event.endTime timeIntervalSinceDate:self.event.startTime];
+        
+        
         self.timeText = [[UILabel alloc] init];
-        self.timeText.text = @"0:00";
+        self.timer = [[MZTimerLabel alloc] initWithLabel:self.timeText andTimerType:MZTimerLabelTypeTimer];
+        [self.timer setCountDownTime:(duration)];
+        [self.timer addTimeCountedByTime:timePassed];
+        [self.timer start];
     } else {
         [self.timeText setHidden:NO];
     }
@@ -196,35 +205,44 @@
     
 }
 
+
+
 -(void)checkedOutView{
-    if(self.timeText == nil) {
-        self.timeText = [[UILabel alloc] init];
-        self.timeText.text = @"0:00";
+    if(self.durationText == nil) {
+        self.durationText = [[UILabel alloc] init];
+        
+        int duration = (int)[self.event.checkOutTime timeIntervalSinceDate:self.event.checkInTime];
+        
+        int seconds = duration % 60;
+        int minutes = (duration /60) %60;
+        int hours = (duration /3600);
+        
+        self.durationText.text = [NSString stringWithFormat:@"%02d:%02d:%02d",hours, minutes, seconds];
     } else {
-        [self.timeText setHidden:NO];
+        [self.durationText setHidden:NO];
     }
     
     if(self.outText == nil) {
         self.outText = [[UILabel alloc] init];
-        self.outText.text = @"Checked Out At 9:55";
+        self.outText.text = [self checkOutTime];
     } else {
         [self.outText setHidden:NO];
     }
     
     [self.containerView addSubview:self.outText];
-    [self.containerView addSubview:self.timeText];
+    [self.containerView addSubview:self.durationText];
     
     [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.width.greaterThanOrEqualTo(self.outText);
-        make.width.greaterThanOrEqualTo(self.timeText);
+        make.width.greaterThanOrEqualTo(self.durationText);
     }];
     
     [self.outText mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerX.bottom.equalTo(self.containerView);
-        make.top.equalTo(self.timeText.mas_bottom).with.offset(50);
+        make.top.equalTo(self.durationText.mas_bottom).with.offset(50);
     }];
     
-    [self.timeText mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.durationText mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerX.top.equalTo(self.containerView);
     }];
 }
@@ -260,6 +278,13 @@
     [self.skippedX mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerX.top.equalTo(self.containerView);
     }];
+}
+
+-(NSString *)checkOutTime{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"H:mm"];
+    
+    return [NSString stringWithFormat:@"Checked out at %@", [formatter stringFromDate:self.event.checkOutTime]];
 }
 
 @end
