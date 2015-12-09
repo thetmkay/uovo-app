@@ -16,13 +16,13 @@
 
 @interface EventControlView : UIView
 
-@property RoundButton * inButton;
-@property RoundButton * outButton;
-@property RoundButton * skipButton;
-@property UITextView * skippedText;
-@property UITextView * skippedX;
-@property UITextView * timeText;
-@property UITextView * outText;
+@property UIButton * inButton;
+@property UIButton * outButton;
+@property UIButton * skipButton;
+@property UILabel * skippedText;
+@property UILabel * skippedX;
+@property UILabel * timeText;
+@property UILabel * outText;
 
 @property UIView *containerView;
 
