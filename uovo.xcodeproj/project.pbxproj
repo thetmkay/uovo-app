@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E90C2C41C185E160071E94C /* UovoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E90C2C31C185E160071E94C /* UovoService.m */; };
+		5E90C2C91C186EA90071E94C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E90C2C81C186EA90071E94C /* Default-568h@2x.png */; };
 		5EFFF30D1C163311007B322B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF30C1C163311007B322B /* main.m */; };
 		5EFFF3101C163311007B322B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF30F1C163311007B322B /* AppDelegate.m */; };
-		5EFFF3161C163311007B322B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EFFF3141C163311007B322B /* Main.storyboard */; };
 		5EFFF3191C163311007B322B /* uovo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3171C163311007B322B /* uovo.xcdatamodeld */; };
 		5EFFF31B1C163311007B322B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EFFF31A1C163311007B322B /* Assets.xcassets */; };
-		5EFFF31E1C163311007B322B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EFFF31C1C163311007B322B /* LaunchScreen.storyboard */; };
 		5EFFF3291C163312007B322B /* uovoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3281C163312007B322B /* uovoTests.m */; };
 		5EFFF3341C163312007B322B /* uovoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3331C163312007B322B /* uovoUITests.m */; };
 		5EFFF3441C16D5DD007B322B /* EventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3431C16D5DD007B322B /* EventsTableViewController.m */; };
@@ -41,14 +41,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5E90C2C21C185E160071E94C /* UovoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UovoService.h; path = Services/UovoService.h; sourceTree = "<group>"; };
+		5E90C2C31C185E160071E94C /* UovoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UovoService.m; path = Services/UovoService.m; sourceTree = "<group>"; };
+		5E90C2C51C186CC60071E94C /* uovo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uovo-Prefix.pch"; sourceTree = "<group>"; };
+		5E90C2C81C186EA90071E94C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5EFFF3081C163311007B322B /* uovo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uovo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EFFF30C1C163311007B322B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5EFFF30E1C163311007B322B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5EFFF30F1C163311007B322B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5EFFF3151C163311007B322B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5EFFF3181C163311007B322B /* uovo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = uovo.xcdatamodel; sourceTree = "<group>"; };
 		5EFFF31A1C163311007B322B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5EFFF31D1C163311007B322B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5EFFF31F1C163311007B322B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EFFF3241C163312007B322B /* uovoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uovoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EFFF3281C163312007B322B /* uovoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = uovoTests.m; sourceTree = "<group>"; };
@@ -97,9 +99,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E90C2C11C185DDC0071E94C /* API */ = {
+			isa = PBXGroup;
+			children = (
+				5E90C2C21C185E160071E94C /* UovoService.h */,
+				5E90C2C31C185E160071E94C /* UovoService.m */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		5EFFF2FF1C163311007B322B = {
 			isa = PBXGroup;
 			children = (
+				5E90C2C81C186EA90071E94C /* Default-568h@2x.png */,
 				5EFFF30A1C163311007B322B /* uovo */,
 				5EFFF3271C163312007B322B /* uovoTests */,
 				5EFFF3321C163312007B322B /* uovoUITests */,
@@ -122,12 +134,11 @@
 		5EFFF30A1C163311007B322B /* uovo */ = {
 			isa = PBXGroup;
 			children = (
+				5E90C2C11C185DDC0071E94C /* API */,
 				5EFFF3411C16D5AF007B322B /* Events */,
 				5EFFF30E1C163311007B322B /* AppDelegate.h */,
 				5EFFF30F1C163311007B322B /* AppDelegate.m */,
-				5EFFF3141C163311007B322B /* Main.storyboard */,
 				5EFFF31A1C163311007B322B /* Assets.xcassets */,
-				5EFFF31C1C163311007B322B /* LaunchScreen.storyboard */,
 				5EFFF31F1C163311007B322B /* Info.plist */,
 				5EFFF3171C163311007B322B /* uovo.xcdatamodeld */,
 				5EFFF30B1C163311007B322B /* Supporting Files */,
@@ -139,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				5EFFF30C1C163311007B322B /* main.m */,
+				5E90C2C51C186CC60071E94C /* uovo-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -300,9 +312,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EFFF31E1C163311007B322B /* LaunchScreen.storyboard in Resources */,
 				5EFFF31B1C163311007B322B /* Assets.xcassets in Resources */,
-				5EFFF3161C163311007B322B /* Main.storyboard in Resources */,
+				5E90C2C91C186EA90071E94C /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +373,7 @@
 			files = (
 				5EFFF3101C163311007B322B /* AppDelegate.m in Sources */,
 				5EFFF3191C163311007B322B /* uovo.xcdatamodeld in Sources */,
+				5E90C2C41C185E160071E94C /* UovoService.m in Sources */,
 				5EFFF3471C16DD5E007B322B /* Event.m in Sources */,
 				5EFFF3571C176F40007B322B /* EventControlView.m in Sources */,
 				5EFFF3541C174D69007B322B /* EventViewController.m in Sources */,
@@ -401,25 +413,6 @@
 			targetProxy = 5EFFF3301C163312007B322B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		5EFFF3141C163311007B322B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5EFFF3151C163311007B322B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		5EFFF31C1C163311007B322B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5EFFF31D1C163311007B322B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		5EFFF3361C163312007B322B /* Debug */ = {
@@ -507,6 +500,8 @@
 			baseConfigurationReference = 913DF129039F67FA5AA24910 /* Pods-uovo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$SRCROOT/$PROJECT_NAME/uovo-Prefix.pch";
 				INFOPLIST_FILE = uovo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ytil.uovo;
@@ -519,6 +514,8 @@
 			baseConfigurationReference = C08ED23236C9DBD3BB242766 /* Pods-uovo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$SRCROOT/$PROJECT_NAME/uovo-Prefix.pch";
 				INFOPLIST_FILE = uovo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ytil.uovo;
