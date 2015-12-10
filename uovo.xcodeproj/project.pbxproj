@@ -14,6 +14,7 @@
 		5E90C2D51C18C82C0071E94C /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E90C2D31C18C82C0071E94C /* Event.m */; };
 		5E90C2E01C18EF000071E94C /* Schedule+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E90C2DD1C18EF000071E94C /* Schedule+CoreDataProperties.m */; };
 		5E90C2E11C18EF000071E94C /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E90C2DF1C18EF000071E94C /* Schedule.m */; };
+		5E90C2E41C19F1D50071E94C /* UIColor+UVColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E90C2E31C19F1D50071E94C /* UIColor+UVColor.m */; };
 		5EFFF30D1C163311007B322B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF30C1C163311007B322B /* main.m */; };
 		5EFFF3101C163311007B322B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF30F1C163311007B322B /* AppDelegate.m */; };
 		5EFFF3191C163311007B322B /* uovo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5EFFF3171C163311007B322B /* uovo.xcdatamodeld */; };
@@ -56,6 +57,8 @@
 		5E90C2DD1C18EF000071E94C /* Schedule+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Schedule+CoreDataProperties.m"; path = "Models/Schedule+CoreDataProperties.m"; sourceTree = "<group>"; };
 		5E90C2DE1C18EF000071E94C /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Schedule.h; path = Models/Schedule.h; sourceTree = "<group>"; };
 		5E90C2DF1C18EF000071E94C /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Schedule.m; path = Models/Schedule.m; sourceTree = "<group>"; };
+		5E90C2E21C19F1D50071E94C /* UIColor+UVColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+UVColor.h"; sourceTree = "<group>"; };
+		5E90C2E31C19F1D50071E94C /* UIColor+UVColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UVColor.m"; sourceTree = "<group>"; };
 		5EFFF3081C163311007B322B /* uovo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uovo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EFFF30C1C163311007B322B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5EFFF30E1C163311007B322B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -151,6 +154,8 @@
 				5EFFF31F1C163311007B322B /* Info.plist */,
 				5EFFF3171C163311007B322B /* uovo.xcdatamodeld */,
 				5EFFF30B1C163311007B322B /* Supporting Files */,
+				5E90C2E21C19F1D50071E94C /* UIColor+UVColor.h */,
+				5E90C2E31C19F1D50071E94C /* UIColor+UVColor.m */,
 			);
 			path = uovo;
 			sourceTree = "<group>";
@@ -413,6 +418,7 @@
 				5EFFF3541C174D69007B322B /* EventViewController.m in Sources */,
 				5EFFF3441C16D5DD007B322B /* EventsTableViewController.m in Sources */,
 				5EFFF3511C1744EA007B322B /* EventCell.m in Sources */,
+				5E90C2E41C19F1D50071E94C /* UIColor+UVColor.m in Sources */,
 				5EFFF30D1C163311007B322B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
