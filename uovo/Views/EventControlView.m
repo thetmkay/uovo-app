@@ -86,26 +86,29 @@
 
 -(void)configureForStatus:(EventStatus)status{
     
-    [self clearView];
-    
-    switch (status) {
-        case Idle:
-            [self idleView];
-            break;
-        case CheckedIn:
-            [self checkedInView];
-            break;
-        case CheckedOut:
-            [self checkedOutView];
-            break;
-        case Skipped:
-            [self skippedView];
-            break;
-        default:
-            break;
-    }
-    
-    [self layoutSubviews];
+    //run in ui thread
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self clearView];
+        
+        switch (status) {
+            case Idle:
+                [self idleView];
+                break;
+            case CheckedIn:
+                [self checkedInView];
+                break;
+            case CheckedOut:
+                [self checkedOutView];
+                break;
+            case Skipped:
+                [self skippedView];
+                break;
+            default:
+                break;
+        }
+        
+        [self layoutSubviews];
+    });
 }
 
 -(void)clearView{
