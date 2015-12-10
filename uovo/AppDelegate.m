@@ -26,11 +26,38 @@
     
     self.dataStack = [[DATAStack alloc] initWithModelName:@"uovo"];
     
+    [self startNetworkQueueMonitoring];
+    
+    
     EventsTableViewController * rootController = [[EventsTableViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:rootController];
     self.window.rootViewController = navController;
     
     return YES;
+}
+
+-(void) startNetworkQueueMonitoring
+{
+    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+    
+    NSOperationQueue * queue = manager.operationQueue;
+    
+    manager.reachabilityManager = [AFNetworkReachabilityManager managerForDomain:@"http://localhost:3000"];
+    
+    [manager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                [queue setSuspended:NO];
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+            default:
+                [queue setSuspended:YES];
+                break;
+        }
+    }];
+    
+    [manager.reachabilityManager startMonitoring];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

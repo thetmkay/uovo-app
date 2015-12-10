@@ -10,13 +10,13 @@
 #import <CoreData/CoreData.h>
 
 #import "DATAStack/DATAStack.h"
+#import "AFNetworking/AFNetworking/h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) DATAStack *dataStack;
-
 
 
 @end
