@@ -36,6 +36,13 @@
     
     self.textLabel.text = event.name;
     self.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", startTime, endTime];
+    
+    NSInteger index = 7;
+    if(event.colorId != nil && [event.colorId integerValue] > 0) {
+        index = [event.colorId integerValue] - 1;
+    }
+    
+    self.backgroundColor = [[UIColor calendarColors] objectAtIndex:index];
 }
 
 @end

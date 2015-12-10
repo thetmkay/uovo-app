@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Event.h"
+#import "UIColor+UVColor.h"
 
 @interface EventCell : UITableViewCell
 
