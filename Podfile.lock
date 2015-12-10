@@ -25,6 +25,24 @@ PODS:
   - DATAObjectIDs (0.5.1)
   - DATAStack (3.1.2):
     - NSObject-HYPTesting (~> 1.2)
+  - ErrorKit (0.3.1):
+    - ErrorKit/Default (= 0.3.1)
+  - ErrorKit/Additions (0.3.1):
+    - ErrorKit/UIKit
+  - ErrorKit/Core (0.3.1)
+  - ErrorKit/Default (0.3.1):
+    - ErrorKit/Additions
+    - ErrorKit/HTTP
+    - ErrorKit/JSONValues
+    - ErrorKit/NSException
+  - ErrorKit/HTTP (0.3.1):
+    - ErrorKit/Core
+  - ErrorKit/JSONValues (0.3.1):
+    - ErrorKit/NSException
+  - ErrorKit/NSException (0.3.1):
+    - ErrorKit/Core
+  - ErrorKit/UIKit (0.3.1):
+    - ErrorKit/Core
   - ISO8601DateFormatter (0.7)
   - Masonry (0.6.3)
   - MZTimerLabel (0.5.4)
@@ -45,6 +63,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - DATAStack
+  - ErrorKit (~> 0.3)
   - ISO8601DateFormatter (~> 0.7)
   - Masonry (~> 0.6)
   - MZTimerLabel (~> 0.5)
@@ -55,6 +74,7 @@ SPEC CHECKSUMS:
   DATAFilter: 3f224f9ffde5c04de4748b65cc259c6481770edf
   DATAObjectIDs: 33db74dd1c858c2d22a45a4013c95f1082182e4e
   DATAStack: 931172971443d745b60a4b95adf50e0c8cfb9790
+  ErrorKit: c09a578bf6e11ba2eb35d7f7295014d8c355cf11
   ISO8601DateFormatter: ab926648eebe497f4d167c0fd083992f959f1274
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
   MZTimerLabel: cd9bfb9304540ef2a9e163384fca9c978f0dbf83

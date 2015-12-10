@@ -9,6 +9,7 @@ target 'uovo' do
 	pod 'MZTimerLabel', '~> 0.5'
 	pod 'DATAStack'
 	pod 'Sync'
+	pod 'ErrorKit', '~> 0.3'
 end
 
 target 'uovoTests' do
