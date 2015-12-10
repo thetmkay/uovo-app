@@ -34,54 +34,21 @@ static NSString *const kClientSecret = @"8jWuUBjxczqKE2EzFG6vEl8a";
     
     self.events = [NSArray array];
     [self.tableView registerClass:[EventCell class] forCellReuseIdentifier:@"EventCell"];
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
     [self fetchEvents];
 }
 
 
 - (void)fetchEvents {
-    
-    NSDate *startDate = [NSDate date];
-    NSTimeInterval day;
-    
-    [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay startDate:&startDate interval:&day forDate:startDate];
-    
-    NSDate * endDate = [startDate dateByAddingTimeInterval:day];
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(date >= %@) AND (date < %@)", startDate, endDate];
-    
-    NSManagedObjectContext *moc = [[(AppDelegate *)[[UIApplication sharedApplication] delegate] dataStack] mainContext];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Schedule" inManagedObjectContext:moc];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entity];
-    [request setPredicate:predicate];
-    // Fetch the records and handle an error
-    NSError *error;
-    id response =[[moc executeFetchRequest:request error:&error] mutableCopy];
-
-    
-    
-
-    if(error != nil) {
-        NSLog(@"Fetch Error: %@", error);
-    }
-    
-    NSOrderedSet * events = [[ response valueForKey:@"events"] objectAtIndex:0];
-    self.events = [events array];
-    
-    if(self.events == nil) {
-        self.events = [NSArray array];
-        NSLog(@"error reading core data");
-    }
-    
-    if(self.events.count == 0){
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [UovoService getEventsWithHandler:^(NSError *error, NSArray *events) {
+            [UovoService getEventsForDate:[NSDate date] WithHandler:^(NSError *error, NSArray *events) {
                 if(error == nil){
                     self.events = events;
+                    [self.tableView reloadData];
                 }
             }];
-        });
-    }
 }
 
 

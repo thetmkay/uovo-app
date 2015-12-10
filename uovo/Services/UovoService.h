@@ -14,9 +14,11 @@
 
 @interface UovoService : NSObject
 
-+(void) getEventsWithHandler:(void (^)(NSError * error, NSArray * events)) handler;
-+(void) checkInForEvent:(NSString *)eventId andCompletionHandler:(void (^)(NSError* error, NSDate * checkInTime)) handler;
-+(void) checkOutForEvent:(NSString *)eventId andCompletionHandler:(void (^)(NSError * error, NSDate * checkOutTime)) handler;
-+(void)skipEvent:(NSString *)eventId andCompletionHandler:(void (^)(NSError * error)) handler;
++(void) getEventsFromNetworkForDate:(NSDate *) date WithHandler:(void (^)(NSError * error, NSArray * events)) handler;
++(void) getEventsFromLocalForDate:(NSDate *) date WithHandler:(void (^)(NSError * error, NSArray * events)) handler;
++(void) getEventsForDate:(NSDate *) date WithHandler:(void (^)(NSError * error, NSArray * events)) handler;
++(void) checkInForEvent:(NSString *)eventId withRequestHandler: (void (^)(NSError* error, NSDate * checkInTime)) onRequested andCompletionHandler:(void (^)(NSError* error, NSDate * checkInTime)) onCompletion;
++(void) checkOutForEvent:(NSString *)eventId withRequestHandler: (void (^)(NSError* error, NSDate * checkInTime)) onRequested andCompletionHandler:(void (^)(NSError* error, NSDate * checkOutTime)) onCompletion;
++(void)skipEvent:(NSString *)eventId withRequestHandler: (void (^)(NSError* error, BOOL skipped)) onRequested andCompletionHandler:(void (^)(NSError* error, BOOL skipped)) onCompletion;
 
 @end

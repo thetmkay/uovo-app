@@ -10,7 +10,8 @@
 #import <CoreData/CoreData.h>
 
 #import "DATAStack/DATAStack.h"
-#import "AFNetworking/AFNetworking/h"
+#import "AFNetworking/AFNetworking.h"
+#import "UovoService.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

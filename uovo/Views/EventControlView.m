@@ -38,11 +38,14 @@
 
 -(IBAction)checkIn:(id)sender {
     
-    [UovoService checkInForEvent:self.event.eventId andCompletionHandler:^(NSError *error, NSDate* checkInTime) {
+    [UovoService checkInForEvent:self.event.eventId withRequestHandler:^(NSError *error, NSDate* checkInTime) {
+        self.event.checkInTime = checkInTime;
+        [self.event saveEvent];
+        [self configureForStatus:CheckedIn];
+        
+     } andCompletionHandler:^(NSError *error, NSDate* checkInTime) {
         if(error == nil){
-            self.event.checkInTime = checkInTime;
-            [self.event saveEvent];
-            [self configureForStatus:CheckedIn];
+            NSLog(@"Check In Request Returned: %@", checkInTime);
         } else{
             NSLog(@"Check In Error: %@", error);
         }
@@ -52,11 +55,13 @@
 
 -(IBAction)checkOut:(id)sender {
     
-    [UovoService checkOutForEvent:self.event.eventId andCompletionHandler:^(NSError *error, NSDate * checkOutTime) {
+    [UovoService checkOutForEvent:self.event.eventId withRequestHandler:^(NSError *error, NSDate* checkOutTime) {
+        self.event.checkOutTime = checkOutTime;
+        [self.event saveEvent];
+        [self configureForStatus:CheckedOut];
+     } andCompletionHandler:^(NSError *error, NSDate * checkOutTime) {
         if(error == nil){
-            self.event.checkOutTime = checkOutTime;
-            [self.event saveEvent];
-            [self configureForStatus:CheckedOut];
+            NSLog(@"Check Out Request Returned: %@", checkOutTime);
         } else{
             NSLog(@"Check Out Error: %@", error);
         }
@@ -64,11 +69,15 @@
 }
 
 -(IBAction)skip:(id)sender {
-    [UovoService skipEvent:self.event.eventId andCompletionHandler:^(NSError *error) {
-        if(error == nil){
-            self.event.skipped = [NSNumber numberWithBool:YES];
-            [self.event saveEvent];
+    [UovoService skipEvent:self.event.eventId withRequestHandler:^(NSError *error, BOOL skipped) {
+        self.event.skipped = [NSNumber numberWithBool:skipped];
+        [self.event saveEvent];
+        if(skipped){
             [self configureForStatus:Skipped];
+        }
+     } andCompletionHandler:^(NSError *error, BOOL skipped) {
+        if(error == nil){
+            NSLog(@"Skiip Request Returned: %@", [NSNumber numberWithBool:skipped]);
         } else{
             NSLog(@"Skip Error: %@", error);
         }
@@ -168,7 +177,7 @@
 -(void)checkedInView{
     if(self.outButton == nil){
         self.outButton = [self createButtonWithText:@"out" AndColor:[UIColor blueColor]];
-        [self.outButton addTarget:self action:@selector(checkOut:) forControlEvents:UIControlEventAllTouchEvents];
+        [self.outButton addTarget:self action:@selector(checkOut:) forControlEvents:UIControlEventTouchUpInside];
     } else {
         [self.outButton setHidden:NO];
     }
