@@ -19,6 +19,7 @@
 
 @property (strong, nonatomic) DATAStack *dataStack;
 
+@property (strong, nonatomic) AFHTTPSessionManager * manager;
 
 @end
 

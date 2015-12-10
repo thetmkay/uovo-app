@@ -10,8 +10,12 @@
 
 @implementation UovoService
 
++(AFHTTPSessionManager *) manager{
+    return [(AppDelegate *)[[UIApplication sharedApplication] delegate] manager];
+}
+
 +(NSString *)urlForEndpoint:(NSString *)endpoint{
-    return [NSString stringWithFormat:@"http://192.168.0.5:3000/%@",endpoint];
+    return [NSString stringWithFormat:@"http://georges-macbook-pro-3.local:3000/%@",endpoint];
 }
 
 +(NSString *)ISOStringForDate:(NSDate *) date{
@@ -26,15 +30,26 @@
     return [formatter stringFromDate:date];
 }
 
++(void)retryIfError:(NSError *)error ThenBlock:(void(^)())thenBlock ElseBlock:(void(^)())elseblock {
+    if(error.code == NSURLErrorNetworkConnectionLost || error.code == NSURLErrorTimedOut || error.isHTTPError){
+
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), thenBlock);
+    } else{
+        elseblock();
+    }
+}
+
 +(void)getEventsFromNetworkForDate:(NSDate *) date WithHandler:(void (^)(NSError * , NSArray * ))handler {
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [self manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd"];
     
     NSString * endpoint = [NSString stringWithFormat:@"events/%@", [dateFormatter stringFromDate:date]];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [manager GET: [self urlForEndpoint:endpoint] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET: [self urlForEndpoint:endpoint ] parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         
         DATAStack * dataStack = [(AppDelegate *)[[UIApplication sharedApplication] delegate] dataStack];
@@ -52,7 +67,7 @@
                
            }];
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         handler(error, nil);
     }];
 }
@@ -78,7 +93,7 @@
     
     NSArray * response = [moc executeFetchRequest:request error:&error];
     
-
+    
     
     if(error != nil || response.count == 0) {
         handler([NSError errorWithDomain:@"uovo.service" code:404 userInfo:nil], nil);
@@ -104,7 +119,7 @@
 }
 
 +(void) checkInForEvent:(NSString *)eventId withRequestHandler: (void (^)(NSError* error, NSDate * checkInTime)) onRequested andCompletionHandler:(void (^)(NSError* error, NSDate * checkInTime)) onCompletion{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [self manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
     NSDate * checkInTime = [NSDate date];
@@ -113,20 +128,28 @@
     
     onRequested(nil, checkInTime);
     
-    [manager POST:@"http://localhost:3000/event/checkin" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+    
+    [manager POST: [self urlForEndpoint:@"event/checkin"] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
  
         ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
         
         NSDate * checkInTime = [formatter dateFromString:[responseObject objectForKey:@"check_in_time"]];
         
         onCompletion(nil, checkInTime);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        onCompletion(error, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        [manager.operationQueue setSuspended:YES];
+        
+        [self retryIfError:error ThenBlock:^{
+            [self checkInForEvent:eventId withRequestHandler:onRequested andCompletionHandler:onCompletion];
+        } ElseBlock:^{
+            onCompletion(error, nil);
+        }];
     }];
 }
 
 +(void) checkOutForEvent:(NSString *)eventId withRequestHandler: (void (^)(NSError* error, NSDate * checkInTime)) onRequested andCompletionHandler:(void (^)(NSError* error, NSDate * checkOutTime)) onCompletion{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [self manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
     NSDate * checkOutTime = [NSDate date];
@@ -134,30 +157,39 @@
     NSDictionary * parameters = @{@"eventId": eventId, @"checkOutTime": [self ISOStringForDate: checkOutTime]};
     
     onRequested(nil, checkOutTime);
-    
-    [manager POST:@"http://localhost:3000/event/checkout" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSLog(@"before request");
+    [manager POST: [self urlForEndpoint:@"event/checkout" ] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
         ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
         
         NSDate * checkOutTime = [formatter dateFromString:[responseObject objectForKey:@"check_out_time"]];
         
         onCompletion(nil, checkOutTime);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        onCompletion(error, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [self retryIfError:error ThenBlock:^{
+            [self checkOutForEvent:eventId withRequestHandler:onRequested andCompletionHandler:onCompletion];
+        } ElseBlock:^{
+            onCompletion(error, nil);
+        }];
     }];
 }
 
 +(void)skipEvent:(NSString *)eventId withRequestHandler: (void (^)(NSError* error, BOOL skipped)) onRequested andCompletionHandler:(void (^)(NSError* error, BOOL skipped)) onCompletion{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [self manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     NSDictionary * parameters = @{@"eventId": eventId};
     
     onRequested(nil, YES);
     
-    [manager POST:@"http://localhost:3000/event/skip" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST: [self urlForEndpoint:@"event/skip"] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         onCompletion(nil, [responseObject objectForKey:@"skipped"]);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        onCompletion(error, NO);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self retryIfError:error ThenBlock:^{
+            [self skipEvent:eventId withRequestHandler:onRequested andCompletionHandler:onCompletion];
+        } ElseBlock:^{
+            onCompletion(error, NO);
+        }];
     }];
 }
 

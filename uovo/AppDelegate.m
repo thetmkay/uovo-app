@@ -38,26 +38,31 @@
 
 -(void) startNetworkQueueMonitoring
 {
-    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        self.manager = [AFHTTPSessionManager manager];
+        
+        NSOperationQueue * queue = self.manager.operationQueue;
+        
+        //    manager.reachabilityManager = [AFNetworkReachabilityManager managerForDomain:@"http://georges-macbook-pro-3.local:3000"];
+        
+        [self.manager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+            switch (status) {
+                case AFNetworkReachabilityStatusReachableViaWWAN:
+                case AFNetworkReachabilityStatusReachableViaWiFi:
+                    NSLog(@"wifi");
+                    [queue setSuspended:NO];
+                    break;
+                case AFNetworkReachabilityStatusNotReachable:
+                default:
+                    NSLog(@"offline");
+                    [queue setSuspended:YES];
+                    break;
+            }
+        }];
+        
+        [self.manager.reachabilityManager startMonitoring];
+    });
     
-    NSOperationQueue * queue = manager.operationQueue;
-    
-    manager.reachabilityManager = [AFNetworkReachabilityManager managerForDomain:@"http://localhost:3000"];
-    
-    [manager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        switch (status) {
-            case AFNetworkReachabilityStatusReachableViaWWAN:
-            case AFNetworkReachabilityStatusReachableViaWiFi:
-                [queue setSuspended:NO];
-                break;
-            case AFNetworkReachabilityStatusNotReachable:
-            default:
-                [queue setSuspended:YES];
-                break;
-        }
-    }];
-    
-    [manager.reachabilityManager startMonitoring];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

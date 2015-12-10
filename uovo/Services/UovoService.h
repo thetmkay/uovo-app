@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "ISO8601DateFormatter/ISO8601DateFormatter.h"
 #import "Sync/Sync.h"
+#import "ErrorKit/ErrorKit.h"
 
 @interface UovoService : NSObject
 
