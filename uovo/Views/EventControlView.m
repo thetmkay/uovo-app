@@ -23,15 +23,8 @@
     
     self.event = event;
     
-    if([self.event.skipped boolValue]) {
-        [self configureForStatus:Skipped];
-    } else if(self.event.checkOutTime != nil){
-        [self configureForStatus:CheckedOut];
-    } else if(self.event.checkInTime != nil) {
-        [self configureForStatus:CheckedIn];
-    } else {
-        [self configureForStatus:Idle];
-    }
+    [self configureForStatus:[self.event getStatus]];
+
     
     return self;
 }

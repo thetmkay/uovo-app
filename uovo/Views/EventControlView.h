@@ -14,14 +14,6 @@
 
 #import "Masonry.h"
 
-typedef NS_ENUM(NSUInteger, EventStatus)
-{
-    Idle,
-    CheckedIn,
-    CheckedOut,
-    Skipped
-};
-
 @interface EventControlView : UIView
 
 @property UIButton * inButton;
