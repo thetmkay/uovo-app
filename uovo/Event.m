@@ -22,7 +22,6 @@
     //ignore timezone
     event.startTime = [formatter dateFromString:[json objectForKey:@"startTime"]];
     event.endTime = [formatter dateFromString:[json objectForKey:@"endTime"]];
-    event.colorId = [json objectForKey:@"colorId"];
     if([[json objectForKey:@"checkInTime"] isKindOfClass:[NSString class]]) {
         event.checkInTime = [formatter dateFromString:[json objectForKey:@"checkInTime"]];
     }
@@ -34,6 +33,18 @@
     }
     
     return event;
+}
+
+-(EventStatus) getStatus {
+    if([self.skipped boolValue]) {
+        return Skipped;
+    } else if(self.checkOutTime != nil){
+        return CheckedOut;
+    } else if(self.checkInTime != nil) {
+       return CheckedIn;
+    } else {
+        return Idle;
+    }
 }
 
 -(void)saveEvent{

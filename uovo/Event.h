@@ -13,12 +13,21 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, EventStatus)
+{
+    Idle,
+    CheckedIn,
+    CheckedOut,
+    Skipped
+};
+
 @interface Event : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
 +(Event *)createFromJSON:(NSDictionary *)json;
 
 -(void)saveEvent;
+-(EventStatus) getStatus;
 
 @end
 

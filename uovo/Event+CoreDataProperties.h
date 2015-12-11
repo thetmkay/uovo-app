@@ -21,7 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSDate *endTime;
 @property (nullable, nonatomic, retain) NSDate *checkInTime;
 @property (nullable, nonatomic, retain) NSDate *checkOutTime;
-@property (nullable, nonatomic, retain) NSNumber *colorId;
 @property (nullable, nonatomic, retain) NSNumber *skipped;
 
 @end

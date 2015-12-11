@@ -3,7 +3,6 @@
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="checkInTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="checkOutTime" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="colorId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="eventId" attributeType="String" syncable="YES">
             <userInfo>
@@ -28,7 +27,7 @@
         </userInfo>
     </entity>
     <elements>
-        <element name="Event" positionX="-63" positionY="-18" width="128" height="178"/>
+        <element name="Event" positionX="-63" positionY="-18" width="128" height="165"/>
         <element name="Schedule" positionX="277" positionY="6" width="128" height="73"/>
     </elements>
 </model>

@@ -19,7 +19,6 @@
 @dynamic endTime;
 @dynamic checkInTime;
 @dynamic checkOutTime;
-@dynamic colorId;
 @dynamic skipped;
 
 @end
