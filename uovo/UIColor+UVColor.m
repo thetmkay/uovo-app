@@ -16,7 +16,21 @@ alpha:1.0]
 
 @implementation UIColor (UVColor)
 
++(UIColor *)uovoGreen{
+    return UIColorFromRGB(0x51b749);
+}
 
++(UIColor *)uovoOrange{
+    return UIColorFromRGB(0xffb878);
+}
+
++(UIColor *)uovoGrey{
+    return UIColorFromRGB(0xe1e1e1);
+}
+
++(UIColor *)uovoRed{
+    return UIColorFromRGB(0xdc2127);
+}
 
 +(NSArray *) calendarColors {
     return [NSArray arrayWithObjects:

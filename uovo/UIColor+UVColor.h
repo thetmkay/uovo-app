@@ -11,5 +11,13 @@
 @interface UIColor (UVColor)
 
 +(NSArray *) calendarColors;
++(UIColor *)uovoGreen;
+
++(UIColor *)uovoOrange;
+
++(UIColor *)uovoGrey;
+
++(UIColor *)uovoRed;
+
 
 @end
