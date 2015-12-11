@@ -10,11 +10,15 @@
 
 #import "Event.h"
 #import "EventControlView.h"
+#import "EventsDelegate.h"
 
 @interface EventViewController : UIViewController
 
 @property Event *event;
+
 @property EventControlView * controlView;
+
+@property id<EventsDelegate> delegate;
 
 - (id)initWithEvent:(Event *)event;
 

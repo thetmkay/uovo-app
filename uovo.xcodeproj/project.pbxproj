@@ -59,6 +59,7 @@
 		5E90C2DF1C18EF000071E94C /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Schedule.m; path = Models/Schedule.m; sourceTree = "<group>"; };
 		5E90C2E21C19F1D50071E94C /* UIColor+UVColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+UVColor.h"; sourceTree = "<group>"; };
 		5E90C2E31C19F1D50071E94C /* UIColor+UVColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UVColor.m"; sourceTree = "<group>"; };
+		5ECC78301C1B14C200ABBE64 /* EventsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsDelegate.h; sourceTree = "<group>"; };
 		5EFFF3081C163311007B322B /* uovo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uovo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EFFF30C1C163311007B322B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5EFFF30E1C163311007B322B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -206,6 +207,7 @@
 				5EFFF3531C174D69007B322B /* EventViewController.m */,
 				5EFFF3551C176F40007B322B /* EventControlView.h */,
 				5EFFF3561C176F40007B322B /* EventControlView.m */,
+				5ECC78301C1B14C200ABBE64 /* EventsDelegate.h */,
 			);
 			name = Events;
 			sourceTree = "<group>";

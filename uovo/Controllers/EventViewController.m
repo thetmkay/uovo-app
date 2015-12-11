@@ -17,24 +17,6 @@
 - (id) initWithEvent:(Event *)event {
     self = [super init];
     self.event = event;
-    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [self.view setClipsToBounds:YES];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
-    
-    self.controlView =  [[EventControlView alloc] initWithEvent:self.event];
-    
-    [self.view addSubview:self.controlView];
-    [self.view setLayoutMargins:UIEdgeInsetsZero];
-    
-    [self.controlView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view);
-        make.bottom.equalTo(self.view);
-        make.height.equalTo(@400);
-    }];
-    
-    [self initTextViews];
-    
-    [self.navigationItem setTitle:self.event.name];
     
     return self;
 }
@@ -48,7 +30,6 @@
         make.left.right.top.equalTo(self.view);
         make.bottom.equalTo(self.controlView.mas_top);
     }];
-    
 
     
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
@@ -81,7 +62,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.view setClipsToBounds:YES];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     
+    self.controlView =  [[EventControlView alloc] initWithEvent:self.event];
+    self.controlView.delegate = self.delegate;
+    [self.view addSubview:self.controlView];
+    [self.view setLayoutMargins:UIEdgeInsetsZero];
+    
+    [self.controlView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view);
+        make.height.equalTo(@400);
+    }];
+    
+    [self initTextViews];
+    
+    [self.navigationItem setTitle:self.event.name];
+
 }
 
 - (void)didReceiveMemoryWarning {

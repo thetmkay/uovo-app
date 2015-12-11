@@ -34,13 +34,19 @@ static NSString *const kClientSecret = @"8jWuUBjxczqKE2EzFG6vEl8a";
     
     self.events = [NSArray array];
     [self.tableView registerClass:[EventCell class] forCellReuseIdentifier:@"EventCell"];
-    
-}
-
--(void)viewDidAppear:(BOOL)animated{
     [self fetchEvents];
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Events delegate methods
 
 - (void)fetchEvents {
             [UovoService getEventsForDate:[NSDate date] WithHandler:^(NSError *error, NSArray *events) {
@@ -51,12 +57,76 @@ static NSString *const kClientSecret = @"8jWuUBjxczqKE2EzFG6vEl8a";
             }];
 }
 
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)checkIn:(Event *)event andBlock:(void(^)(Event *event)) block {
+    
+//    Event * event;
+//    NSInteger index;
+//    
+//    for(int i = 0; i < self.events.count; i++){
+//        Event * ev = [self.events objectAtIndex:i];
+//        if(ev.eventId == event.eventId) {
+//            event = ev;
+//            index = i;
+//            break;
+//        }
+//    }
+    
+    [UovoService checkInForEvent:event.eventId withRequestHandler:^(NSError *error, NSDate* checkInTime) {
+        
+        event.checkInTime = checkInTime;
+        block(event);
+        [event saveEvent];
+        
+        [self.tableView reloadData];
+//        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        
+    } andCompletionHandler:^(NSError *error, NSDate* checkInTime) {
+        if(error == nil){
+            NSLog(@"Check In Request Returned: %@", checkInTime);
+        } else{
+            NSLog(@"Check In Error: %@", error);
+        }
+    }];
+    
 }
+
+-(void)checkOut:(Event *) event andBlock:(void(^)(Event *event)) block  {
+    
+
+
+    
+    [UovoService checkOutForEvent:event.eventId withRequestHandler:^(NSError *error, NSDate* checkOutTime) {
+        event.checkOutTime = checkOutTime;
+        block(event);
+        [event saveEvent];
+        [self.tableView reloadData];
+
+    } andCompletionHandler:^(NSError *error, NSDate * checkOutTime) {
+        if(error == nil){
+            NSLog(@"Check Out Request Returned: %@", checkOutTime);
+        } else{
+            NSLog(@"Check Out Error: %@", error);
+        }
+    }];
+}
+
+-(void)skip:(Event *)event andBlock:(void(^)(Event *event)) block  {
+    
+    [UovoService skipEvent:event.eventId withRequestHandler:^(NSError *error, BOOL skipped) {
+        event.skipped = [NSNumber numberWithBool:skipped];
+        block(event);
+        [event saveEvent];
+        
+        [self.tableView reloadData];
+    } andCompletionHandler:^(NSError *error, BOOL skipped) {
+        if(error == nil){
+            NSLog(@"Skip Request Returned: %@", [NSNumber numberWithBool:skipped]);
+        } else{
+            NSLog(@"Skip Error: %@", error);
+        }
+    }];
+}
+
 
 #pragma mark - Table view data source
 
@@ -94,7 +164,12 @@ static NSString *const kClientSecret = @"8jWuUBjxczqKE2EzFG6vEl8a";
     Event * event = [self.events objectAtIndex:indexPath.row];
     
     EventViewController * viewController = [[EventViewController alloc] initWithEvent:event];
+    viewController.delegate = self;
     [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
 }
 
 /*

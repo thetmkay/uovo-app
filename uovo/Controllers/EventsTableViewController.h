@@ -14,8 +14,9 @@
 #import "ISO8601DateFormatter.h"
 #import "AppDelegate.h"
 #import "Schedule.h"
+#import "EventsDelegate.h"
 
-@interface EventsTableViewController : UITableViewController
+@interface EventsTableViewController : UITableViewController<EventsDelegate>
 
 @property NSArray * events;
 

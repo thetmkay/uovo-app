@@ -31,48 +31,24 @@
 
 -(IBAction)checkIn:(id)sender {
     
-    [UovoService checkInForEvent:self.event.eventId withRequestHandler:^(NSError *error, NSDate* checkInTime) {
-        self.event.checkInTime = checkInTime;
-        [self.event saveEvent];
-        [self configureForStatus:CheckedIn];
+    [self.delegate checkIn:self.event andBlock:^(Event *event) {
         
-     } andCompletionHandler:^(NSError *error, NSDate* checkInTime) {
-        if(error == nil){
-            NSLog(@"Check In Request Returned: %@", checkInTime);
-        } else{
-            NSLog(@"Check In Error: %@", error);
-        }
+        [self configureForStatus:CheckedIn];
     }];
     
 }
 
 -(IBAction)checkOut:(id)sender {
     
-    [UovoService checkOutForEvent:self.event.eventId withRequestHandler:^(NSError *error, NSDate* checkOutTime) {
-        self.event.checkOutTime = checkOutTime;
-        [self.event saveEvent];
+    [self.delegate checkOut:self.event andBlock:^(Event *event) {
         [self configureForStatus:CheckedOut];
-     } andCompletionHandler:^(NSError *error, NSDate * checkOutTime) {
-        if(error == nil){
-            NSLog(@"Check Out Request Returned: %@", checkOutTime);
-        } else{
-            NSLog(@"Check Out Error: %@", error);
-        }
     }];
 }
 
 -(IBAction)skip:(id)sender {
-    [UovoService skipEvent:self.event.eventId withRequestHandler:^(NSError *error, BOOL skipped) {
-        self.event.skipped = [NSNumber numberWithBool:skipped];
-        [self.event saveEvent];
-        if(skipped){
-            [self configureForStatus:Skipped];
-        }
-     } andCompletionHandler:^(NSError *error, BOOL skipped) {
-        if(error == nil){
-            NSLog(@"Skiip Request Returned: %@", [NSNumber numberWithBool:skipped]);
-        } else{
-            NSLog(@"Skip Error: %@", error);
+    [self.delegate skip:self.event andBlock:^(Event *event) {
+        if([event.skipped boolValue]){
+           [self configureForStatus:Skipped];
         }
     }];
 }

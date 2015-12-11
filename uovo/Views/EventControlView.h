@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UovoService.h"
 #import "Event.h"
+#import "EventsDelegate.h"
 #import "MZTimerLabel.h"
 
 #import "Masonry.h"
@@ -29,6 +30,8 @@
 @property UIView *containerView;
 
 @property Event * event;
+
+@property id<EventsDelegate> delegate;
 
 -(id)initWithEvent:(Event *)event;
 
